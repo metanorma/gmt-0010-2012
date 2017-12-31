@@ -1,0 +1,20 @@
+= GM/T 0010:2012 SM2 Cryptographic Signature Message Syntax Specification (English Translation)
+
+== Building The Document
+
+=== HTML
+
+[source,sh]
+----
+make clean gmt-0010-2012.html
+----
+
+=== PDF
+
+[source,sh]
+----
+make clean gmt-0010-2012.pdf
+----
+
+NOTE: building in PDF doesn't properly render math blocks yet.
+

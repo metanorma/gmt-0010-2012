@@ -1,0 +1,731 @@
+= GM/T 0010:2012 SM2 Cryptographic Signature Message Syntax Specification: English Translation
+Ronald Tse <ronald.tse@ribose.com>
+v0.1, January 9, 2017: Draft Translation
+:stem:
+
+== Foreword
+
+This standard is authored in accordance with GB/T 1.1-2009.
+
+Please note that some of this document involve patents. The publishers of this
+document does not bear responsibility of identifying these patents.
+
+This standard is proposed by the State Cryptographic Administration of China.
+
+This standard is managed by the National Information Security Standardization
+Technical Committee (SAC/TC 260).
+
+Appendix A of this standard is considered normative.
+
+This standard was drafted by these organizations:
+
+* Shanghai Koal Software Co.
+* Beijing Haitai Fangyuan Technology Co., Ltd.
+* Beijing Certificate Authority Co., Ltd.
+* Wuxi Jiangnan Information Technology Co., Ltd., Security Engineering Technology Center
+* Chengdu Westone Information Industry Inc.
+* Shanghai Electronic Certificate Authority Center Co., Ltd
+* Xingtang Telecommunications Technology Co., Ltd
+* Shandong Dean Information Technology Co., Ltd
+* National Information Security Engineering Technology Research Center
+
+The main drafters of this standard include:
+
+* Zheng Jiang
+* Jiang Hongyu
+* Fu Dapeng
+* Li Yuanzheng
+* Han Wei
+* Xu Mingyi
+* Wang Nina
+* Kongfan Yu
+* Yuan Feng
+
+Responsible expert of this standard:
+
+* Liu Ping
+
+== Scope
+
+This standard defines the cryptographic signature message syntax used with the
+SM2 cryptographic algorithms.
+
+This standard applies to the operation results of using SM2 cryptographic
+algorithms for message encryption and digital signatures.
+
+
+== Normative References
+
+The following documents are necessary for the application of this document. For
+referenced documents that are dated, only the dated document applies to this
+document. For referenced documents that are undated, the latest version
+(including all errata) applies to this document.
+
+* GB/T 16262.1:2006, Information Technology -- Abstract Syntax Notation 1 (ASN.1) -- Basic Syntax Rules (ISO/IEC 8824-1:2002)
+* GM/T 0006:2012, SM2 Cryptographic Algorithm Application Identification Specification
+* GM/T 0009:2012, SM2 Cryptographic Algorithm Application Specification
+* PKCS #6 Extended Certificate Syntax
+
+
+== Terms And Definitions
+
+The following terms apply to this standard.
+
+algorithm identifier::
+  used to identify the algorithm that generated a digital message
+
+SM2 algorithm::
+  an elliptic curve cryptographic algorithm, with a 256 bit long secret key.
+
+SM3 algorithm::
+  a hash algorithm with an output length of 256 bits.
+
+
+== Symbols And Abbreviations
+
+The following abbreviations are applicable to this document:
+
+EC::
+  Electronic Code Book mode
+
+ECC::
+  Elliptic Curve Cryptography
+
+ID::
+  User identification
+
+
+
+[#oid-definitions]
+== OID Definitions
+
+This standard defines object identifiers of 6 objects:
+`signedData`,
+`envelopedData`, `signedAndEnvelopedData`, `encryptedData`, and `keyAgreementInfo`, as
+shown in <<table-oid>>.
+
+[[table-oid]]
+.Object Identifiers
+|===
+| Object Identifier OID   | Object Identifier Definition
+
+| 1.2.156.10197.6.1.4.2   | SM2 Cryptographic Signature Message Syntax Specification
+| 1.2.156.10197.6.1.4.2.1 | `data`: data type
+| 1.2.156.10197.6.1.4.2.2 | `signedData`: signature data type
+| 1.2.156.10197.6.1.4.2.3 | `envelopedData`: digital envelop data type
+| 1.2.156.10197.6.1.4.2.4 | `signedAndEnvelopedData`: signature and digital envelop data type
+| 1.2.156.10197.6.1.4.2.5 | `encryptedData`: encrypted data type
+| 1.2.156.10197.6.1.4.2.6 | `keyAgreementInfo`: key agreement type
+|===
+
+
+== Definition Of Basic Types
+
+=== `CertificateRevocationLists`
+
+The `CertificateRevocationLists` structure provides a set of certificate
+revocation lists.
+
+[source,asn1]
+----
+CertificateRevocationLists ::= SET OF CertificateRevocationList
+----
+
+
+=== `ContentEncryptionAlgorithmIdentifier`
+
+The `ContentEncryptionAlgorithmIdentifier` type indicates a data encryption
+algorithm, with its OID specified in GM/T 0006.
+
+[source,asn1]
+----
+ContentEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `DigestAlgorithmIdentifier`
+
+The `DigestAlgorithmIdentifier` type indicates a message digest algorithm. In
+this specification it is designated as the SM3 cryptographic hash algorithm,
+with its OID given in GM/T 0006.this
+
+[source,asn1]
+----
+DigestAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `DigestEncryptionAlgorithmIdentifier`
+
+The `DigestEncryptionAlgorithmIdentifier` type indicates a digital signature
+algorithm, specified as the SM2 cryptographic algorithm, with its OID is given
+in GM/T 0006.
+
+[source,asn1]
+----
+DigestEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+== `ExtendedCertificateOrCertificate`
+
+The `ExtendedCertificateOrCertificate` type specifies a PKCS #6 Extension
+Certificate or an X.509 Certificate. The recommended syntax for this type
+is given in PKCS #6.
+
+[source,asn1]
+----
+ExtendedCertificateOrCertificate ::= CHOICE {
+  certificate            Certificate, -- X.509
+  extendedCertificate[0] IMPLICIT ExtendedCertificate
+}
+----
+
+
+=== `ExtendedCertificatesAndCertificates`
+
+The `ExtendedCertificatesAndCertificates` type specifies a set of Extended
+Certificates and X.509 Certificates. This collection provides a full
+certificate chain for all signers reaching a recognizable "root" or "top-level
+CA".
+
+[source,asn1]
+----
+ExtendedCertificatesAndCertificates ::= SET OF ExtendedCertificateOrCertificate
+----
+
+=== `IssuerAndSerialNumber`
+
+The `IssuerAndSerialNumber` type indicates the issuer and serial number of a
+certificate, that can be used to verify the certificate itself as well as the
+entity and public key that corresponds to it.
+
+[source,asn1]
+----
+IssuerAndSerialNumber ::= SEQUENCE {
+  issuer         Name,
+  serialNumber   CertificateSerialNumber
+}
+----
+
+
+=== `KeyEncryptionAlgorithmIdentifier`
+
+The `KeyEncryptionAlgorithmIdentifier` type indicates the encryption algorithm
+that is used to encrypt the symmetric key.
+
+[source,asn1]
+----
+KeyEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `Version`
+
+The `Version` type indicates the version number of the syntax.
+
+[source,asn1]
+----
+Version ::= INTEGER(1)
+----
+
+=== `ContentInfo`
+
+The `ContentInfo` type indicates the common syntax structure for content
+exchange, as defined below.
+
+[source,asn1]
+----
+ContentInfo ::= SEQUENCE {
+  contentType  ContentType,
+  content[0]   EXPLICIT ANY DEFINED BY contentType OPTIONAL
+}
+
+ContentType ::= OBJECT IDENTIFIER
+----
+
+
+Where:
+
+* `ContentType` contains an object identifier, as defined in
+<<oid-definitions>>.
+
+* `content` contains content, and is an optional field.
+
+=== Data Types
+
+The `data` data type structure is defined below.
+
+[source,asn1]
+----
+Data ::= OCTET STRING
+----
+
+The `data` data type structure is an octet string of any length, such as the
+content of a text document in ASCII.
+
+
+== Digital Signature Data Structure `signedData`
+
+=== `signedData` Type
+
+The `signedData` data type consists of any type of data together with a
+signature value of at least one signer. Any type of data can be signed by any
+number of signers simultaneously.
+
+The `signedData` data type structure is defined below.
+
+[source,asn1]
+----
+SignedData ::= SEQUENCE {
+  version           Version,
+  digestAlgorithms  DigestAlgorithmIdentifiers,
+  contentInfo       SM2Signature,
+  certificates[0]   IMPLICIT ExtendedCertificatesAndCertificates OPTIONAL,
+  crls[1]           IMPLICIT CertificateRevocationLists OPTIONAL,
+  signerInfos       SignerInfos
+}
+
+DigestAlgorithmIdentifiers ::= SET OF DigestAlgorithmIdentifier
+
+SignerInfos::= SET OF SignerInfo
+----
+
+Description of this structure is given in <<table-signeddata>>.
+
+[[table-signeddata]]
+.Data Fields of `signedData`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `digestAlgorithms`
+| `DigestAlgorithmIdentifiers`
+| Collection of message digest algorithm object identifiers
+
+| `contentInfo`
+| `SM2Signature`
+| Signed data content
+
+| `certificates`
+| `ExtendedCertificatesAndCertificates`
+| Collection of PKCS #6 Extended Certificates and X.509 Certificates
+
+| `crls`
+| `CertificateRevocationLists`
+| Collection of Certificate Revocation Lists
+
+| `signerInfos`
+| `SignerInfos`
+| Collection of each signer's information
+
+|===
+
+
+== `signerInfo` Type
+
+The `signerInfo` type structure is defined as follows:
+
+[source,asn1]
+----
+SignerInfo ::= SEQUENCE {
+  version                       Version,
+  issuerAndSerialNumber         IssuerAndSerialNumber,
+  digestAlgorithm               DigestAlgorithmIdentifier,
+  authenticatedAttributes[0]    IMPLICIT Attributes OPTIONAL,
+  digestEncryptionAlgorithm     DigestEncryptionAlgorithmIdentifier,
+  encryptedDigest               EncryptedDigest,
+  unauthenticatedAttributes[1]  IMPLICIT Attributes OPTIONAL
+}
+
+EncryptedDigest ::= OCTET STRING
+----
+
+Description of this structure is given in <<table-signerinfo>>.
+
+[[table-signerinfo]]
+.Data Fields of `signerInfo`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `issuerAndSerialNumber`
+| `IssuerAndSerialNumber`
+| The distinguishing name of the certificate issuer and a certificate serial
+number that can be verified by the issuer, from which the certificate as well
+as the entity and public key corresponding to the certificate can be
+determined.
+
+| `digestAlgorithm`
+| `DigestAlgorithmIdentifier`
+| The message digest algorithm used to calculate the content digest, specified
+as the SM3 Cryptographic Hash Algorithm in this specification.
+
+| `authenticatedAttributes` 
+| `Attributes`
+| An optional field of a set of attributes signed by the signer. If this field
+exists, the digest in this field is calculated by digesting the source text.
+
+| `digestEncryptionAlgorithm`
+| `DigestEncryptionAlgorithmIdentifier`
+| SM2 Elliptic Curve Digital Signature Algorithm Object Identifier
+
+
+| `encryptedDigest` 
+| `OCTET STRING`
+| The result of signing with the signer's private key, as defined in GM/T 0009.
+Its value is of type `SM2Signature`. 
+
+|===
+
+
+
+== Digital Envelope Data Type `envelopedData`
+
+=== `envelopedData` Type
+
+The digital envelope data type `envelopedData` consists of the encrypted
+content and the ciphertext of the data encryption key of at least one
+recipient.
+
+Its encrypted content is encrypted with the data encryption key, and the data
+encryption key is encrypted with the recipient's public key.
+
+This data type is used to create digital envelopes for the receiver's `data`,
+`digestedData`, or `signedData`.
+
+The `envelopedData` data type structure is defined below.
+
+[source,asn1]
+----
+EnvelopedData ::= SEQUENCE {
+  version               Version,
+  recipientInfos        RecipientInfos,
+  encryptedContentInfo  EncryptedContentInfo
+}
+
+RecipientInfos ::= SET OF RecipientInfo
+----
+
+Description of this structure is given in <<table-envelopeddata>>.
+
+[[table-envelopeddata]]
+.Data Fields of `envelopedData`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `recipientInfos`
+| `RecipientInfos`
+| A set of recipient information, with a minimum of one recipient.
+
+| `encryptedContentInfo`
+| `EncryptedContentInfo`
+| Encrypted message content
+
+|===
+
+[source,asn1]
+----
+EncryptedContentInfo ::= SEQUENCE {
+  contentType                 ContentType,
+  contentEncryptionAlgorithm  ContentEncryptionAlgorithmIdentifier,
+  encryptedContent[0]         IMPLICIT EncryptedContent OPTIONAL,
+  sharedInfo1 [1]             IMPLICIT OCTET STRING OPTIONAL,
+  sharedInfo2 [2]             IMPLICIT OCTET STRING OPTIONAL
+}
+
+EncryptedContent ::= OCTET STRING
+----
+
+Description of this structure is given in <<table-encryptedcontentinfo>>.
+
+[[table-encryptedcontentinfo]]
+.Data Fields of `EncryptedContentInfo`
+|===
+| Field Name | Data Type | Meaning
+
+| `contentType`
+| `ContentType`
+| Type of content
+
+| `contentEncryptionAlgorithm`
+| `ContentEncryptionAlgorithmIdentifier`
+| Identifier of the encryption algorithm used for encrypting content (and its
+parameters)
+
+| `encryptedContent`
+| `EncryptedContent`
+| Optional, the encrypted content
+
+| `sharedInfo1[1]`
+| `OCTET STRING`
+| Optional, a shared message mutually agreed upon.
+
+| `sharedInfo2[2]`
+| `OCTET STRING`
+| Optional, a shared message mutually agreed upon.
+
+|===
+
+
+=== `recipientInfo` Type
+
+The details of each recipient is represented using the `recipientInfo` type.
+
+The `recipientInfo` data type structure is defined below.
+
+[source,asn1]
+----
+RecipientInfo ::= SEQUENCE{
+  version                 Version,
+  issuerAndSerialNumber   IssuerAndSerialNumber,
+  keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+  encryptedKey            OCTET STRING
+}
+----
+
+Description of this structure is given in <<table-recipientinfo>>.
+
+[[table-recipientinfo]]
+.Data Fields of `RecipientInfo`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `issuerAndSerialNumber`
+| `IssuerAndSerialNumber`
+| Distinguishing name of issuer and serial number of the certificate.
+
+| `keyEncryptionAlgorithm`
+| `KeyEncryptionAlgorithmIdentifier`
+| Algorithm used with the recipient's public key to encrypt the data encryption
+key.  Specified as the SM2 Elliptic Curve Encryption Algorithm.
+
+| `encryptedKey` 
+| `OCTET STRING`
+| Data encryption key in form of ciphertext `SM2cipher`, as defined in GM/T
+0009
+
+|===
+
+== Signature And Digital Envelope Data Type `signedAndEnvelopedData`
+
+The `signedAndEnvelopedData` data type consists of any type of encrypted data, at
+least one recipient's data encryption key, and at least one signer's signature.
+
+The `signedAndEnvelopedData` data type structure is defined below.
+
+[source,asn1]
+----
+SignedAndEnvelopedData ::= SEQUENCE {
+  version               Version,
+  recipientInfos        RecipientInfos,
+  digestAlgorithms      DigestAlgorithmIdentifiers,
+  encryptedContentInfo  EncryptedContentInfo,
+  certificates[0]       IMPLICIT ExtendedCertificatesAndCertificates OPTIONAL,
+  crls[1]               IMPLICIT CertificateRevocationLists OPTIONAL,
+  signerInfos           SignerInfos
+}
+----
+
+Description of its fields is given in <<table-signedandenvelopeddata>>.
+
+[[table-signedandenvelopeddata]]
+.Data Fields of `signedAndEnvelopedData`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `recipientInfos`
+| `RecipientInfos`
+| A set of recipient information, with a minimum of one element.
+
+| `digestAlgorithms`
+| `DigestAlgorithmIdentifiers`
+| A set of object identifiers for message digest algorithms
+
+| `encryptedContentInfo`
+| `EncryptedContentInfo`
+| Encrypted content, can be of any defined data type
+
+| `certificates`
+| `ExtendedCertificatesAndCertificates`
+| Optional, a set of PKCS #6 Extended Certificates and X.509 Certificates
+
+| `crls`
+| `CertificateRevocationLists`
+| A set of certification revocation lists.
+
+| `signerInfos`
+| `SignerInfos`
+| A set of signers, with a minimum of one element.
+
+|===
+
+== Encrypted Data Data Type `encryptedData`
+
+The `encryptedData` data type consists of any type of encrypted data that has
+neither a recipient nor an encrypted data encryption key.
+
+The `encryptedData` data type is defined below.
+
+[source,asn1]
+----
+EncryptedData ::= SEQUENCE {
+  version               Version,
+  encryptedContentInfo  EncryptedContentInfo
+ }
+----
+
+Description of its fields is given in <<table-encrypteddata>>.
+
+[[table-encrypteddata]]
+.Data Fields of `encryptedData`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `encryptedContentInfo`
+| `EncryptedContentInfo`
+| Encrypted content
+
+|===
+
+== Private Key Agreement Data Type `keyAgreementInfo`
+
+The data type for key negotiation `keyAgreementInfo` is used to provide a
+structure in which a shared secret key can be established between two users, by
+which the value of a shared secret key can be determined.
+
+This data type is used for the exchange of public parameters between two users
+for generating a shared secret key.
+
+[source,asn1]
+----
+KeyAgreementInfo::= SEQUENCE{
+  version          Version(1),
+  tempPublicKeyR   SM2PublicKey,
+  userCertificate  Certificate,
+  userID           OCTET STRING
+}
+----
+
+Description of its fields is given in <<table-keyagreementinfo>>.
+
+[[table-keyagreementinfo]]
+.Data Fields of `KeyAgreementInfo`
+|===
+| Field Name | Data Type | Meaning
+
+| `version(1)`
+| `Version`
+| Syntax version number
+
+| `tempPublicKeyR`
+| `SM2PublicKey`
+| Temporary public key
+
+| `userCertificate`
+| `Certificate`
+| User certificate
+
+| `userID`
+| `OCTET STRING`
+| User identifier
+
+|===
+
+
+== Appendix A (Normative), SM2 Private Key Format
+
+=== Elliptic Curve Parameter Syntax
+
+Elliptic curve parameters are expressed in identical form as the ASN.1 syntax
+described in X.962, reproduced as follows:
+
+[source,asn1]
+----
+Parameters ::= CHOICE {
+  ecParameters  ECParameters,
+  namedCurve    ObjectIdentifier,
+  implicitlyCA  NULL
+}
+----
+
+When expressed in association with SM2 cryptographic algorithms, only the
+`namedCurve` type expression is used with the OID specifying the SM2
+cryptographic algorithm curve. See GM/T 0006 for details.
+
+=== Public Key Syntax
+
+Public keys based on elliptic curve cryptography are expressed in identical
+form as described by the corresponding ASN.1 notation provided in X.962,
+reproduced as follows:
+
+[source,asn1]
+----
+SubjectPublicKeyInfo ::= SEQUENCE {
+  algorithm         AlgorithmIdentifier {{ECPKAlgorithms}},
+  subjectPublicKey  SM2PublicKey
+}
+----
+
+Where:
+
+* `algorithm` defines the type of the public key
+
+* `subjectPublicKey` defines the value of the public key
+
+`AlgorithmIdentifier` is the binding of the object identifier and parameters,
+defined as follows:
+
+[source,asn1]
+----
+AlgorithmIdentifier ::= SEQUENCE {
+  algorithm   OBJECT IDENTIFIER,
+  parameters  ANY DEFINED BY algorithm OPTIONAL
+}
+----
+
+The SM2 cryptographic algorithm OID (algorithm) is defined in GM/T 0006.
+
+== Private Key Syntax
+
+Private keys based on elliptic curve cryptography are expressed in identical
+form as described by the corresponding ASN.1 notation provided in X.962,
+reproduced as follows:
+
+[source,asn1]
+----
+ECPrivateKey{CURVES:IOSet} ::= SEQUENCE {
+  version        INTEGER { ecPrivkeyVer1(1) } (ecPrivkeyVer1),
+  privateKey     SM2PrivateKey,
+  parameters[0]  Parameters{{IOSet}} OPTIONAL,
+  publicKey[1]   SM2PublicKey
+}
+----
+
+Where:
+
+* `version` specifies the version number of the private key. The integer `1` is
+used here to indicate the version number of the SM2 private key.
+
