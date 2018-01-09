@@ -147,7 +147,7 @@ ContentEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
 
 The `DigestAlgorithmIdentifier` type indicates a message digest algorithm. In
 this specification it is designated as the SM3 cryptographic hash algorithm,
-with its OID given in GM/T 0006.this
+with its OID given in GM/T 0006.
 
 [source,asn1]
 ----
