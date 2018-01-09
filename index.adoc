@@ -1,4 +1,4 @@
-= GM/T 0010:2012 SM2 Cryptographic Signature Message Syntax Specification: English Translation
+= GM/T 0010-2012 SM2 Cryptographic Signature Message Syntax Specification: English Translation
 Ronald Tse <ronald.tse@ribose.com>
 v0.1, January 9, 2017: Draft Translation
 :stem:
@@ -62,8 +62,8 @@ document. For referenced documents that are undated, the latest version
 (including all errata) applies to this document.
 
 * GB/T 16262.1:2006, Information Technology -- Abstract Syntax Notation 1 (ASN.1) -- Basic Syntax Rules (ISO/IEC 8824-1:2002)
-* GM/T 0006:2012, SM2 Cryptographic Algorithm Application Identification Specification
-* GM/T 0009:2012, SM2 Cryptographic Algorithm Application Specification
+* GM/T 0006-2012, SM2 Cryptographic Algorithm Application Identification Specification
+* GM/T 0009-2012, SM2 Cryptographic Algorithm Application Specification
 * PKCS #6 Extended Certificate Syntax
 
 
