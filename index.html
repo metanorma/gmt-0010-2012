@@ -1,1303 +1,1613 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="author" content="Ronald Tse">
-<title>GM/T 0009-2012 SM2 Cryptography Algorithm Application Specification (English Translation)</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
-<style>
-/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
-/* Remove comment around @import statement below when using as a custom stylesheet */
-/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
-article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
-audio,canvas,video{display:inline-block}
-audio:not([controls]){display:none;height:0}
-[hidden],template{display:none}
-script{display:none!important}
-html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-a{background:transparent}
-a:focus{outline:thin dotted}
-a:active,a:hover{outline:0}
-h1{font-size:2em;margin:.67em 0}
-abbr[title]{border-bottom:1px dotted}
-b,strong{font-weight:bold}
-dfn{font-style:italic}
-hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
-mark{background:#ff0;color:#000}
-code,kbd,pre,samp{font-family:monospace;font-size:1em}
-pre{white-space:pre-wrap}
-q{quotes:"\201C" "\201D" "\2018" "\2019"}
-small{font-size:80%}
-sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
-sup{top:-.5em}
-sub{bottom:-.25em}
-img{border:0}
-svg:not(:root){overflow:hidden}
-figure{margin:0}
-fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
-legend{border:0;padding:0}
-button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
-button,input{line-height:normal}
-button,select{text-transform:none}
-button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
-button[disabled],html input[disabled]{cursor:default}
-input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
-input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
-input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
-button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
-textarea{overflow:auto;vertical-align:top}
-table{border-collapse:collapse;border-spacing:0}
-*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
-html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
-a:hover{cursor:pointer}
-img,object,embed{max-width:100%;height:auto}
-object,embed{height:100%}
-img{-ms-interpolation-mode:bicubic}
-.left{float:left!important}
-.right{float:right!important}
-.text-left{text-align:left!important}
-.text-right{text-align:right!important}
-.text-center{text-align:center!important}
-.text-justify{text-align:justify!important}
-.hide{display:none}
-img,object,svg{display:inline-block;vertical-align:middle}
-textarea{height:auto;min-height:50px}
-select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.spread{width:100%}
-p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
-.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
-a{color:#2156a5;text-decoration:underline;line-height:inherit}
-a:hover,a:focus{color:#1d4b8f}
-a img{border:none}
-p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
-p aside{font-size:.875em;line-height:1.35;font-style:italic}
-h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
-h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
-h1{font-size:2.125em}
-h2{font-size:1.6875em}
-h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
-h4,h5{font-size:1.125em}
-h6{font-size:1em}
-hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
-em,i{font-style:italic;line-height:inherit}
-strong,b{font-weight:bold;line-height:inherit}
-small{font-size:60%;line-height:inherit}
-code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
-ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
-ul,ol{margin-left:1.5em}
-ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
-ul.circle{list-style-type:circle}
-ul.disc{list-style-type:disc}
-ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
-dl dt{margin-bottom:.3125em;font-weight:bold}
-dl dd{margin-bottom:1.25em}
-abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
-abbr{text-transform:none}
-blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
-blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
-blockquote cite:before{content:"\2014 \0020"}
-blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
-blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
-@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
-h1{font-size:2.75em}
-h2{font-size:2.3125em}
-h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
-h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
-table thead,table tfoot{background:#f7f8f7;font-weight:bold}
-table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
-table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
-table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
-table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
-h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
-h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
-.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
-.clearfix:after,.float-group:after{clear:both}
-*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-*:not(pre)>code.nobreak{word-wrap:normal}
-*:not(pre)>code.nowrap{white-space:nowrap}
-pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
-em em{font-style:normal}
-strong strong{font-weight:400}
-.keyseq{color:rgba(51,51,51,.8)}
-kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
-.keyseq kbd:first-child{margin-left:0}
-.keyseq kbd:last-child{margin-right:0}
-.menuseq,.menuref{color:#000}
-.menuseq b:not(.caret),.menuref{font-weight:inherit}
-.menuseq{word-spacing:-.02em}
-.menuseq b.caret{font-size:1.25em;line-height:.8}
-.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
-b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
-b.button:before{content:"[";padding:0 3px 0 2px}
-b.button:after{content:"]";padding:0 2px 0 3px}
-p a>code:hover{color:rgba(0,0,0,.9)}
-#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
-#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
-#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
-#content{margin-top:1.25em}
-#content:before{content:none}
-#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
-#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
-#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
-#header .details span:first-child{margin-left:-.125em}
-#header .details span.email a{color:rgba(0,0,0,.85)}
-#header .details br{display:none}
-#header .details br+span:before{content:"\00a0\2013\00a0"}
-#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
-#header .details br+span#revremark:before{content:"\00a0|\00a0"}
-#header #revnumber{text-transform:capitalize}
-#header #revnumber:after{content:"\00a0"}
-#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
-#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
-#toc>ul{margin-left:.125em}
-#toc ul.sectlevel0>li>a{font-style:italic}
-#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
-#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
-#toc li{line-height:1.3334;margin-top:.3334em}
-#toc a{text-decoration:none}
-#toc a:active{text-decoration:underline}
-#toctitle{color:#7a2518;font-size:1.2em}
-@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
-body.toc2{padding-left:15em;padding-right:0}
-#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
-#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
-#toc.toc2>ul{font-size:.9em;margin-bottom:0}
-#toc.toc2 ul ul{margin-left:0;padding-left:1em}
-#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
-body.toc2.toc-right{padding-left:0;padding-right:15em}
-body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
-@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
-#toc.toc2{width:20em}
-#toc.toc2 #toctitle{font-size:1.375em}
-#toc.toc2>ul{font-size:.95em}
-#toc.toc2 ul ul{padding-left:1.25em}
-body.toc2.toc-right{padding-left:0;padding-right:20em}}
-#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
-#content #toc>:first-child{margin-top:0}
-#content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
-#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
-.sect1{padding-bottom:.625em}
-@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
-.sect1+.sect1{border-top:1px solid #efefed}
-#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
-#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
-#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
-#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
-#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
-.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
-.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
-table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
-.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
-table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
-.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
-.admonitionblock>table td.icon{text-align:center;width:80px}
-.admonitionblock>table td.icon img{max-width:initial}
-.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
-.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
-.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
-.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
-.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
-.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
-.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
-.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
-@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
-@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
-.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
-.listingblock pre.highlightjs{padding:0}
-.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
-.listingblock pre.prettyprint{border-width:0}
-.listingblock>.content{position:relative}
-.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
-.listingblock:hover code[data-lang]:before{display:block}
-.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
-.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
-table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
-table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
-table.pyhltable td.code{padding-left:.75em;padding-right:0}
-pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
-pre.pygments .lineno{display:inline-block;margin-right:.25em}
-table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
-.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
-.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
-.quoteblock blockquote{margin:0;padding:0;border:0}
-.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
-.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
-.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
-.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
-.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
-.quoteblock .quoteblock blockquote:before{display:none}
-.verseblock{margin:0 1em 1.25em 1em}
-.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
-.verseblock pre strong{font-weight:400}
-.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
-.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
-.quoteblock .attribution br,.verseblock .attribution br{display:none}
-.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
-.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
-.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
-.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
-table.tableblock{max-width:100%;border-collapse:separate}
-table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
-table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
-table.frame-all{border-width:1px}
-table.frame-sides{border-width:0 1px}
-table.frame-topbot{border-width:1px 0}
-th.halign-left,td.halign-left{text-align:left}
-th.halign-right,td.halign-right{text-align:right}
-th.halign-center,td.halign-center{text-align:center}
-th.valign-top,td.valign-top{vertical-align:top}
-th.valign-bottom,td.valign-bottom{vertical-align:bottom}
-th.valign-middle,td.valign-middle{vertical-align:middle}
-table thead th,table tfoot th{font-weight:bold}
-tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
-tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
-p.tableblock>code:only-child{background:none;padding:0}
-p.tableblock{font-size:1em}
-td>div.verse{white-space:pre}
-ol{margin-left:1.75em}
-ul li ol{margin-left:1.5em}
-dl dd{margin-left:1.125em}
-dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
-ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
-ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
-ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
-ul.unstyled,ol.unstyled{margin-left:0}
-ul.checklist{margin-left:.625em}
-ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
-ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
-ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
-ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
-ul.inline>li>*{display:block}
-.unstyled dl dt{font-weight:400;font-style:normal}
-ol.arabic{list-style-type:decimal}
-ol.decimal{list-style-type:decimal-leading-zero}
-ol.loweralpha{list-style-type:lower-alpha}
-ol.upperalpha{list-style-type:upper-alpha}
-ol.lowerroman{list-style-type:lower-roman}
-ol.upperroman{list-style-type:upper-roman}
-ol.lowergreek{list-style-type:lower-greek}
-.hdlist>table,.colist>table{border:0;background:none}
-.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
-td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
-td.hdlist1{font-weight:bold;padding-bottom:1.25em}
-.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
-.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
-.colist>table tr>td:first-of-type img{max-width:initial}
-.colist>table tr>td:last-of-type{padding:.25em 0}
-.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
-.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
-.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
-.imageblock>.title{margin-bottom:0}
-.imageblock.thumb,.imageblock.th{border-width:6px}
-.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
-.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
-.image.left{margin-right:.625em}
-.image.right{margin-left:.625em}
-a.image{text-decoration:none;display:inline-block}
-a.image object{pointer-events:none}
-sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
-sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
-#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
-#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
-#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
-#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
-#footnotes .footnote:last-of-type{margin-bottom:0}
-#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
-.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
-.gist .file-data>table td.line-data{width:99%}
-div.unbreakable{page-break-inside:avoid}
-.big{font-size:larger}
-.small{font-size:smaller}
-.underline{text-decoration:underline}
-.overline{text-decoration:overline}
-.line-through{text-decoration:line-through}
-.aqua{color:#00bfbf}
-.aqua-background{background-color:#00fafa}
-.black{color:#000}
-.black-background{background-color:#000}
-.blue{color:#0000bf}
-.blue-background{background-color:#0000fa}
-.fuchsia{color:#bf00bf}
-.fuchsia-background{background-color:#fa00fa}
-.gray{color:#606060}
-.gray-background{background-color:#7d7d7d}
-.green{color:#006000}
-.green-background{background-color:#007d00}
-.lime{color:#00bf00}
-.lime-background{background-color:#00fa00}
-.maroon{color:#600000}
-.maroon-background{background-color:#7d0000}
-.navy{color:#000060}
-.navy-background{background-color:#00007d}
-.olive{color:#606000}
-.olive-background{background-color:#7d7d00}
-.purple{color:#600060}
-.purple-background{background-color:#7d007d}
-.red{color:#bf0000}
-.red-background{background-color:#fa0000}
-.silver{color:#909090}
-.silver-background{background-color:#bcbcbc}
-.teal{color:#006060}
-.teal-background{background-color:#007d7d}
-.white{color:#bfbfbf}
-.white-background{background-color:#fafafa}
-.yellow{color:#bfbf00}
-.yellow-background{background-color:#fafa00}
-span.icon>.fa{cursor:default}
-a span.icon>.fa{cursor:inherit}
-.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
-.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
-.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
-.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
-.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
-.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
-.conum[data-value] *{color:#fff!important}
-.conum[data-value]+b{display:none}
-.conum[data-value]:after{content:attr(data-value)}
-pre .conum[data-value]{position:relative;top:-.125em}
-b.conum *{color:inherit!important}
-.conum:not([data-value]):empty{display:none}
-dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
-h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
-p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
-p{margin-bottom:1.25rem}
-.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
-.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
-.print-only{display:none!important}
-@media print{@page{margin:1.25cm .75cm}
-*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
-a{color:inherit!important;text-decoration:underline!important}
-a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
-a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
-abbr[title]:after{content:" (" attr(title) ")"}
-pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
-thead{display:table-header-group}
-svg{max-width:100%}
-p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
-h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
-#toc,.sidebarblock,.exampleblock>.content{background:none!important}
-#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
-.sect1{padding-bottom:0!important}
-.sect1+.sect1{border:0!important}
-#header>h1:first-child{margin-top:1.25rem}
-body.book #header{text-align:center}
-body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
-body.book #header .details{border:0!important;display:block;padding:0!important}
-body.book #header .details span:first-child{margin-left:0!important}
-body.book #header .details br{display:block}
-body.book #header .details br+span:before{content:none!important}
-body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
-body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
-.listingblock code[data-lang]:before{display:block}
-#footer{background:none!important;padding:0 .9375em}
-#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
-.hide-on-print{display:none!important}
-.print-only{display:block!important}
-.hide-for-print{display:none!important}
-.show-for-print{display:inherit!important}}
+<?xml version="1.0"?>
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:epub="http://www.idpf.org/2007/ops">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>gmt-0010-2012-en</title><style>
+  <!--
+/*
+    0 CSS RESET
+*/
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  border: 0;
+  font-size: 100%; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, tt, var,
+b, u, i, center,
+dl, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  vertical-align: baseline; }
+
+html, body, div, span, applet, object, iframe,
+p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  font-family: "Cambria", serif; }
+
+h1, h2, h3, h4, h5, h6, .h2Annex {
+  font-family: "Calibri", sans-serif; }
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto; }
+
+dt {
+  grid-column-start: 1; }
+
+dd {
+  grid-column-start: 2; }
+
+dd p, dt p {
+  margin-top: 0px; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1.3; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  margin-left: 298px;
+  margin-right: 2em; }
+
+main {
+  padding-left: 4em;
+  padding-right: 2em; }
+
+.title-section, .prefatory-section {
+  padding-left: 4em;
+  padding-top: 2em; }
+
+.prefatory-section {
+  margin-bottom: 5em; }
+
+.doctitle-en, .doctitle-fr {
+  margin-top: 2em;
+  text-align: left; }
+
+.doctitle-en {
+  background-color: black;
+  padding-left: 3em;
+  margin-left: -3em;
+  padding-top: 2em;
+  padding-bottom: 2em; }
+
+.doctitle-en span {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: 900;
+  display: block;
+  color: white; }
+
+.doctitle-fr span {
+  font-size: 1.2em;
+  line-height: 1.2em;
+  font-style: italic;
+  display: block; }
+
+span.title {
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 800; }
+
+.coverpage_docstage {
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+.coverpage_warning {
+  border-top: solid 1px #f36f36;
+  border-bottom: solid 1px #f36f36;
+  margin: 1em 2em;
+  color: #485094;
+  padding: 1em; }
+
+.coverpage_warning .title {
+  color: #f36f36;
+  font-weight: 500; }
+
+.coverpage_warning .content {
+  font-style: italic; }
+
+.coverpage_docnumber, .coverpage_techcommittee {
+  text-align: right;
+  font-size: 14.0pt; }
+
+.coverpage {
+  text-align: center;
+  margin: 2em 0; }
+
+.coverpage-category {
+  float: left;
+  text-align: left; }
+
+.coverpage-logo {
+  color: #485094; }
+
+.coverpage-tc-name {
+  color: #485094;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  margin: 0.25em 0; }
+
+.coverpage-doc-identity {
+  background-color: #485094;
+  color: white;
+  font-size: 2em;
+  line-height: 2em;
+  margin: 0.5em 0; }
+
+.coverpage-doc-identity-first {
+  font-size: 5mm;
+  text-align: right;
+  padding-right: 5mm;
+  padding-bottom: 1em;
+  padding-top: 1em; }
+
+.coverpage-title {
+  font-weight: 400; }
+
+.coverpage-title .title-second {
+  display: none; }
+
+.coverpage-logo-text {
+  font-size: 24.0pt; }
+
+.coverpage-stage-block {
+  font-style: italic;
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: 600; }
+
+span.date-publish {
+  float: left; }
+
+span.date-active {
+  float: right; }
+
+.coverpage-doc-relations {
+  font-size: 10.5pt;
+  padding-top: 0.5em; }
+
+.coverpage-title-zh {
+  font-size: 8mm;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* flex-direction: column; */
+  font-family: "Calibri", sans-serif; }
+
+.coverpage-title-zh span {
+  padding-top: 2mm;
+  font-size: 28pt; }
+
+.coverpage-title-en {
+  margin-top: 10mm;
+  font-size: 18pt;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "Calibri", sans-serif; }
+
+.coverpage-title-en span {
+  display: block; }
+
+.coverpage-title-en .title-first {
+  text-transform: uppercase; }
+
+.coverpage-iso-relation {
+  font-size: 14pt;
+  margin-top: 10mm;
+  text-align: center; }
+
+.coverpage-dates {
+  font-size: 14.0pt;
+  width: 100%;
+  margin-top: 25mm;
+  font-family: "Calibri", sans-serif;
+  border-bottom: 1px solid #000; }
+
+.coverpage_footer {
+  text-align: center;
+  font-size: 16pt;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 10mm; }
+
+/* NEW */
+.coverpage_footer table, .coverpage_footer th, .coverpage_footer td {
+  border: 0; }
+
+/* NEW */
+.coverpage_footer th, .coverpage_footer td {
+  padding: 5px;
+  font-size: 1.1em;
+  font-weight: 600; }
+
+/* NEW */
+.coverpage_footer .publish {
+  vertical-align: middle; }
+
+.coverpage-banner {
+  padding-top: 5mm;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.copyright .name {
+  font-weight: 900;
+  padding-top: 1em; }
+
+.copyright .year, .copyright .message,
+.copyright .name, .copyright .address {
+  margin-top: 1em;
+  line-height: 1.1em;
+  display: block; }
+
+.copyright .message, .copyright .name,
+.copyright .address {
+  font-size: 0.9em; }
+
+.copyright .name {
+  color: #485094;
+  font-weight: 600; }
+
+.copyright .address {
+  color: #485094; }
+
+/* TYPOGRAPHY */
+h1 {
+  font-size: 1.5em;
+  line-height: 2em;
+  color: #485094;
+  font-weight: 400; }
+
+h2 {
+  font-size: 1.3em;
+  line-height: 1.5em;
+  color: #485094;
+  font-weight: 300; }
+
+h3 {
+  font-size: 1.1em;
+  line-height: 1.3em;
+  color: #485094;
+  font-weight: 300; }
+
+h1 {
+  margin-top: 2em;
+  margin-bottom: 1em; }
+
+h2 {
+  margin-top: 2em;
+  margin-bottom: 1em; }
+
+h4, h5, h6 {
+  line-height: 1.2; }
+
+h2 p {
+  display: inline; }
+
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.2em; }
+
+p.zzSTDTitle1 {
+  font-weight: 700;
+  font-size: 1.5em; }
+
+span.obligation {
+  font-weight: 400; }
+
+a, a:visited {
+  text-decoration: none;
+  color: #485094; }
+
+a:hover {
+  text-style: italic;
+  color: #485094; }
+
+nav a {
+  color: black;
+  text-decoration: none;
+  line-height: 1.2em; }
+
+p.TermNum {
+  color: #485094;
+  font-weight: 400;
+  margin: 0; }
+
+p.Terms {
+  color: #485094;
+  font-weight: 400;
+  margin: 0; }
+
+p.AltTerms {
+  color: #485094;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0; }
+
+p.DeprecatedTerms {
+  color: #485094;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0; }
+
+/* Navigation*/
+@media (min-width: 768px) {
+  nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 278px;
+    font-size: 0.9em;
+    overflow: auto;
+    padding: 0 0 0 45px;
+    background-color: #f7f7f7; }
+
+  #toggle {
+    position: fixed;
+    height: 100%;
+    width: 30px;
+    background-color: black;
+    color: white !important;
+    cursor: pointer;
+    margin-left: -4em;
+    margin-top: -2em; }
+
+  #toggle span {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%); }
+
+  .container {
+    padding-left: 360px; }
+
+  .rule.toc {
+    display: none; }
+
+  h1.toc-contents {
+    margin-top: 1em; }
+
+  ul#toc-list {
+    padding: 0;
+    margin: 0; } }
+@media (max-width: 768px) {
+  #toc {
+    padding: 0 1.5em 0 1.5em;
+    overflow: visible; }
+
+  #toggle {
+    display: none;
+    margin-left: -4em;
+    margin-top: -2em; }
+
+  body {
+    margin-left: 2em; }
+
+  main {
+    padding: 0; }
+
+  .title-section, .prefatory-section {
+    padding-left: 0;
+    padding-top: 0;
+    width: 100%; } }
+#toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+#toc li {
+  padding: 5px 10px; }
+
+#toc a {
+  text-decoration: none;
+  display: block; }
+
+#toc a:hover {
+  color: white; }
+
+#toc .h2 {
+  padding-left: 30px; }
+
+#toc .h3 {
+  padding-left: 50px; }
+
+#toc .toc-active a {
+  color: white; }
+
+#toc .toc-active, #toc li:hover {
+  background: #1d1d1d;
+  box-shadow: inset -5px 0px 10px -5px #1d1d1d !important; }
+
+#toc li:hover a {
+  color: white; }
+
+/*
+ul li {
+    list-style: none;
+  }
+
+  ul li p:before {
+    content: "?~@~T";
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+    margin-right: 0.5em;
+  }
+*/
+li p {
+  /* display: inline-block; */
+  margin-bottom: 0.6em;
+  line-height: 1.2; }
+
+#toc li:before {
+  content: " ";
+  display: none; }
+
+/*
+    Document types + stages
+*/
+.document-type-band {
+  left: 0;
+  top: 180px;
+  height: 100%;
+  position: fixed;
+  display: block;
+  z-index: 99;
+  /*box-shadow: -5px 0px 10px #1d1d1d*/ }
+
+.document-stage-band {
+  left: 0;
+  top: 0;
+  height: 100%;
+  position: fixed;
+  display: block;
+  z-index: 98;
+  box-shadow: -5px 0px 10px #1d1d1d; }
+
+.document-type {
+  position: relative;
+  width: 25px; }
+
+.document-stage {
+  position: relative;
+  width: 25px; }
+
+p.document-type, p.document-stage {
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin: 0;
+  margin-left: 6px;
+  writing-mode: tb-rl;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  white-space: nowrap;
+  display: block;
+  bottom: 0; }
+
+p.document-type {
+  font-weight: 400;
+  height: 210px; }
+
+#governance-band p.document-type {
+  font-weight: 400;
+  height: 230px !important; }
+
+p.document-stage {
+  font-weight: 300;
+  height: 160px; }
+
+#standard-band {
+  background-color: #0ac442; }
+
+#standard {
+  border-bottom: solid 3px #0ac442; }
+
+#governance {
+  border-bottom: solid 3px #750697; }
+
+#governance-band {
+  background-color: #750697; }
+
+#guide {
+  border-bottom: solid 3px #48a0e7; }
+
+#guide-band {
+  background-color: #48a0e7; }
+
+.coverpage-maturity {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  margin: 0 0 2em 0;
+  text-transform: uppercase; }
+
+#working-draft {
+  border-bottom: solid 3px #fda706; }
+
+#working-draft-band {
+  background-color: #fda706; }
+
+#committee-draft {
+  border-bottom: solid 3px #fd06fd; }
+
+#committee-draft-band {
+  background-color: #fd06fd; }
+
+#draft-standard {
+  border-bottom: solid 3px #fdf906; }
+
+#draft-standard {
+  border-bottom: solid 3px #fdf906; }
+
+#standard {
+  border-bottom: solid 3px #0ac442; }
+
+#standard-band {
+  background-color: #0ac442; }
+
+#obsolete {
+  border-bottom: solid 3px #7e0d13; }
+
+#obsolete-band {
+  background-color: #7e0d13; }
+
+/* 3 Other styles */
+/*
+    3.3 Lists
+*/
+ul, ol {
+  margin-left: 2em; }
+
+#toc-list ul {
+  margin-bottom: 0.25em; }
+
+#toc-list ul li {
+  list-style-type: none; }
+
+/*
+3.4 Rules
+*/
+.rule {
+  width: 100%;
+  height: 1px;
+  background-color: #0e1a85;
+  margin: 2em 0; }
+
+/*
+3.5 Bibliograhy
+*/
+p.Biblio, p.NormRef {
+  margin-top: 1em;
+  margin-left: 2em; }
+
+/*
+3.6 Source Code + figures
+*/
+.Sourcecode {
+  font-family: "Courier New", monospace; }
+
+.figure, .Sourcecode {
+  background-color: #f7f7f7;
+  line-height: 1.6em;
+  padding: 1.5em;
+  margin: 2em 0 1em 0;
+  overflow: auto; }
+
+.figure-title, .FigureTitle {
+  font-weight: 700;
+  font-size: 1em;
+  text-align: center; }
+
+/*
+3.7 Notes
+*/
+.Note, .note {
+  background-color: #fff495;
+  color: #47430c;
+  padding: 0.5em;
+  margin: 1.5em 0 1.5em 0;
+  text-align: left; }
+
+.Note p, .note p {
+  margin: 0; }
+
+/*
+3.8 Examples
+*/
+.example {
+  background-color: #e1eef1;
+  padding: 0.5em;
+  margin: 2em 0 1em 0;
+  text-align: left; }
+
+.example p {
+  margin: 0; }
+
+.example .example-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 0; }
+
+/*
+3.9 Tables
+*/
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-weight: 300;
+  margin: 1em 0 2em 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 2em;
+  text-align: center; }
+
+table, th, td {
+  border: 1px solid black;
+  font-size: 0.95em; }
+
+td, th {
+  padding: 1em !important; }
+
+td.header {
+  font-weight: 400; }
+
+p.TableTitle {
+  text-align: center;
+  margin-top: 2.5em;
+  font-weight: 800;
+  font-size: 1.1em; }
+
+.TableFootnote {
+  text-align: left !important; }
+
+/*
+3.10 Footnotes
+*/
+a.footnote-number, a.TableFootnoteRef {
+  vertical-align: super;
+  font-size: 0.8em; }
+
+.footnote {
+  font-size: 0.9em; }
+
+sup a {
+  vertical-align: super;
+  font-size: 0.8em; }
+
+#footnote_box {
+  font-size: 14px;
+  background: white;
+  padding: 0 10px;
+  margin: 10px;
+  border: 1px solid #888;
+  -moz-box-shadow: 0px 0px 5px #888;
+  -webkit-box-shadow: 0px 0px 5px #888;
+  box-shadow: 0px 0px 5px #888; }
+
+ol.footnotes-list, aside.footnote {
+  margin-left: 1em; }
+
+ol.footnotes-list li, aside.footnote {
+  font-size: 0.9em;
+  vertical-align: top;
+  list-style: decimal;
+  margin-bottom: 1em; }
+
+ol.footnotes-list:first-child {
+  margin-top: 2em; }
+
+ol.footnotes-list p, aside.footnote {
+  display: inline; }
+
+ol li p:before {
+  content: "";
+  display: none; }
+
+/*
+3.11 Blockquotes
+*/
+.blockquote, .Quote {
+  background-color: #f7f7f7;
+  font-style: italic;
+  width: 80%;
+  padding: 1.5em;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto; }
+
+/*
+3.12 Formulas
+*/
+.formula {
+  background-color: #f7f7f7;
+  padding: 1.5em;
+  margin-top: 2em;
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
+  font-size: 0.9em; }
+
+/*
+Keywords
+*/
+span.keyword {
+  font-weight: 600; }
+
+.Admonition, .admonition {
+  background-color: #ffb3b3;
+  /* color: #47430c;*/
+  padding: 0.5em;
+  margin: 1.5em 0 1.5em 0;
+  text-align: left; }
+
+.Admonition p, .admonition p {
+  margin: 0; }
+
+-->
 </style>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!--TOC script import-->
+<script type="text/javascript" src="https://cdn.rawgit.com/jgallen23/toc/0.3.2/dist/toc.min.js"></script>
+
+<!--Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Overpass:300,300i,600,900" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,900" rel="stylesheet" />
+<!--Font awesome import for the link icon-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous" />
 </head>
-<body class="article">
-<div id="header">
-<h1>GM/T 0009-2012 SM2 Cryptography Algorithm Application Specification (English Translation)</h1>
-<div class="details">
-<span id="author" class="author">Ronald Tse</span><br>
-<span id="email" class="email"><a href="mailto:ronald.tse@ribose.com">ronald.tse@ribose.com</a></span><br>
-<span id="revnumber">version 0.1,</span>
-<span id="revdate">October 10, 2017</span>
-<br><span id="revremark">Draft Translation</span>
+  <body lang="EN-US" link="blue" vlink="#954F72" xml:lang="EN-US">
+    <div class="title-section"><div class="document-stage-band" id="standard-band">
+<p class="document-stage">standard</p> 
+    </div>
+
+    <div class="document-type-band" id="recommendation-band">
+      <p class="document-type">Recommendation</p>
+    </div>
+
+<div id="toggle"> <span>&#x2022;</span> </div>
+
+<header>
+<div class="coverpage">
+                  <div class="coverpage-header">
+
+
+  <div class="coverpage-category">
+    <span class="category-1">L80</span>
+    <span class="category-2">ICS 35.040 </span>
+  </div>
+
+  <div class="coverpage-logo">
+    <div class="coverpage-logo-gb-img"><img width='113' height='56' src='gb-standard-gm.gif' alt='GM'></img></div>
+  </div>
+
+  <div class="coverpage-logo-header">
+                                        <div>
+                                        <span class="coverpage-logo-text">
+
+    <span class="coverpage-logo-text">People's Republic of China  Cryptography  Industry Standard</span>
+
+  </span></div>
+
+  <div class="coverpage-doc-identity-first">
+    <div class="coverpage_docnumber">
+      <span class="docnumber">GM/T 0010&mdash;2012</span>
+      </div>
+
+    <div class="coverpage-doc-relations">
+    
+    </div>
+  </div>
+  </div>
+                  </div>
 </div>
-</div>
-<div id="content">
-<div class="sect1">
-<h2 id="_scope">Scope</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This standard defines the usage methods of the SM2 cryptographic algorithm, as
-well as data formats for secret key, encryption and signature data.</p>
-</div>
-<div class="paragraph">
-<p>This standard is applicable to the usage of the SM2 cryptographic algorithm,
-and to the development and testing of devices and systems that support the
-SM2 cryptographic algorithm.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_normative_references">Normative References</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following documents are necessary for the application of this document. For
-referenced documents that are dated, only the dated document applies to this
-document. For referenced documents that are undated, the latest version
-(including all errata) applies to this document.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>GB/T AAAA, SM2 Elliptic Curve Cryptography Public Key Algorithm</p>
-</li>
-<li>
-<p>GB/T BBBB, SM3 Cryptographic Hash Algorithm</p>
-</li>
+
+                <div class="coverpage-banner">
+
+
+  <div class="coverpage-doc-identity-second">
+    <div class="coverpage-title-zh">
+      <span class="title-first"></span>
+      <span class="title-second">SM2密码算法加密签名消息语法规范</span>
+      <span class="title-third"> </span>
+    </div>
+
+    <!-- for local standards (DB, DB/T), no en title -->
+    <div class="coverpage-title-en">
+      <span class="title-first"></span>
+      <span class="title-second">SM2 Cryptographic Signature Message Syntax Specification</span>
+      <span class="title-third"></span>
+    </div>
+  </div>
+
+
+  <div class="coverpage-footer">
+    <!-- for local standards (DB, DB/T), no relation to ISO standards -->
+    <!-- if related to ISO standards -->
+    
+
+  <div class="coverpage-stage-block" lang="en" xml:lang="en">
+    
+    <span class="stage-if-draft">&#xFF08;IS&#xFF09;</span> <br />
+    
+    
+    <span class="revision-if-draft">&#xFF08;Completion date for this manuscript:  2012-11-22&#xFF09;</span>
+    
+    
+  </div>
+  </div>
+                </div>
+                    <div class="coverpage-dates">
+                          <span class="date-publish">Issuance Date: 2012-11-22</span>
+                          <span class="date-active">Implementation Date: 2012-11-22</span>
+                        </div>
+
+
+  <div class="coverpage_footer">
+    State Administration Of Cryptography
+  </div>
+</header>
+
+      <p>&#xA0;</p>
+    </div>
+    <br />
+    <div class="prefatory-section"><nav>
+
+  <h1 id="content">Contents</h1>
+  <div id="toc"></div>
+
+</nav>
+
+      <p>&#xA0;</p>
+    </div>
+    <br />
+    <main class="main-section"><button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+      <br />
+      <div>
+        <h1 class="ForewordTitle">Foreword&#xA0;</h1>
+        <p id="_21f86fdb-5e7c-4139-91fb-3dab9a809418">This standard is authored in accordance with GB/T 1.1-2009.</p>
+        <p id="_1a8d4a39-f913-46bc-9e75-e2470f845181">Please note that some of this document involve patents. The publishers of this
+document does not bear responsibility of identifying these patents.</p>
+        <p id="_c5054818-1b7b-4a64-a24f-3513942f342e">This standard is proposed by the State Cryptographic Administration of China.</p>
+        <p id="_38c3af16-400f-45f6-a3d8-5b0dd3abfb0a">This standard is managed by the National Information Security Standardization
+Technical Committee (SAC/TC 260).</p>
+        <p id="_ca9773b8-0179-4e02-acd7-eaf7d8339464"><a href="#annex-a">Annex A</a> of this standard is considered normative.</p>
+        <p id="_c82cab2d-7804-4509-96a3-4f5166ec846d">This standard was drafted by these organizations:</p>
+        <ul>
+  <li>
+    <p id="_a3377171-df77-491a-b029-2e91ba75ef3d">Shanghai Koal Software Co.</p>
+  </li>
+  <li>
+    <p id="_c4addb5d-9b42-4407-9c01-07ba7022bd50">Beijing Haitai Fangyuan Technology Co., Ltd.</p>
+  </li>
+  <li>
+    <p id="_bd7540e1-a343-4e2b-9184-86802fc6c3ea">Beijing Certificate Authority Co., Ltd.</p>
+  </li>
+  <li>
+    <p id="_d67fcf80-26d8-4c34-8cbd-fa6267fd56f1">Wuxi Jiangnan Information Technology Co., Ltd., Security Engineering Technology Center</p>
+  </li>
+  <li>
+    <p id="_6c923f47-eeb3-49cc-af04-1ddf6e8e4384">Chengdu Westone Information Industry Inc.</p>
+  </li>
+  <li>
+    <p id="_424dc2ec-b3d9-4d4b-8837-479d21be615f">Shanghai Electronic Certificate Authority Center Co., Ltd</p>
+  </li>
+  <li>
+    <p id="_087cb16e-774e-462c-ac8c-2a85da69fefa">Xingtang Telecommunications Technology Co., Ltd</p>
+  </li>
+  <li>
+    <p id="_bde4ea8f-2c89-4820-b238-9e290eecc15e">Shandong Dean Information Technology Co., Ltd</p>
+  </li>
+  <li>
+    <p id="_96231e48-8775-4900-ad83-e41ab525a0d9">National Information Security Engineering Technology Research Center</p>
+  </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_terms_and_definitions">Terms And Definitions</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">algorithm identifier</dt>
-<dd>
-<p>used to identify the algorithm that generated a digital message</p>
-</dd>
-<dt class="hdlist1">SM2 algorithm</dt>
-<dd>
-<p>an elliptic curve cryptographic algorithm, with a 256 bit long secret key.</p>
-</dd>
-<dt class="hdlist1">SM3 algorithm</dt>
-<dd>
-<p>a hash algorithm with an output length of 256 bits.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_symbols_and_abbreviations">Symbols And Abbreviations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following abbreviations are applicable to this document:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">EC</dt>
-<dd>
-<p>Electronic Code Book mode</p>
-</dd>
-<dt class="hdlist1">ECC</dt>
-<dd>
-<p>Elliptic Curve Cryptography</p>
-</dd>
-<dt class="hdlist1">ID</dt>
-<dd>
-<p>User identification</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_sm2_key_pairs">SM2 Key Pairs</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">SM2 Private Key</dt>
-<dd>
-<p>The SM2 Private Key is a whole number larger than 1 but less than (n-1) (n is
-the number of rounds of the SM2 algorithm, refer to GM/T 0003 for its
-value).  It is abbreviated as <code>k</code>, with a length of 256 bits.</p>
-</dd>
-<dt class="hdlist1">SM2 Public Key</dt>
-<dd>
-<p>The SM2 Public Key is a point on the SM2 Curve, represented by its x- and
-y-coordinates as (x, y), abbreviated as <code>Q</code>, with each coordinate of length
-256 bits.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_data_conversion">Data Conversion</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In SM2 calculations these 4 mechanisms are used to convert between Octet
-Strings and Bit Strings.</p>
-</div>
-<div class="sect2">
-<h3 id="_bit_string_to_octet_string_conversion">Bit String to Octet String Conversion</h3>
-<div class="paragraph">
-<p>If the bit string length is not a multiple of 8, add <code>0</code> to its left to ensure
-the length is divisible by 8. Then create an octet string as below.</p>
-</div>
-<div class="paragraph">
-<p>INPUT: Bit String \$B\$ of length \$b l e n\$</p>
-</div>
-<div class="paragraph">
-<p>OUTPUT: Octet String \$M\$ of length \$m l e n\$, \$m l e n\$ is the whole
-number portion of \$(b l e n + 7)/8\$.</p>
-</div>
-<div class="paragraph">
-<p>STEPS: Converting bit string \$B = B_0 B_1 ... B_{b l e n - 1}\$ to octet
-string \$M = M_0 M_1 ... M_{m l e n - 1}\$, \$0 &lt;= i &lt;= m l e n - 1\$.</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\$M_i = B_{b l e n-8-8(m l e n-1-i)} B_{b l e n-7-8(m l e n-1-i)} ... B_{b l e n-1-8(m l e n-1-i)}\$
-</div>
-</div>
-<div class="stemblock">
-<div class="content">
-\$M_0 = text(the leftmost ) 8 - b l e n % 8 text( position set to ) 0 text(, the right of it is ) B_0 B_1 … B_(8 - 8(m l e n) + b l e n - 1)\$
-</div>
-</div>
-<div class="paragraph">
-<p>OUTPUT \$M\$.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_octet_string_to_bit_string_conversion">Octet String to Bit String Conversion</h3>
-<div class="paragraph">
-<p>Octet String to Bit String Conversion as follows:</p>
-</div>
-<div class="paragraph">
-<p>INPUT: Octet String \$M\$ of length \$m l e n\$</p>
-</div>
-<div class="paragraph">
-<p>OUTPUT: Octet String \$B\$ of length \$b l e n = (8 times m l e n)\$</p>
-</div>
-<div class="paragraph">
-<p>STEPS: Converting octet string \$M = M_0 M_1 … M_(m l e n-1)\$ to bit string \$B = B_0 B_1 … B_(b l e n-1)\$, \$0 &lt;= i &lt;= m l e n-1\$.</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\$B_(8i) B_(8i+1) … B_(8i+7) = M_i\$
-</div>
-</div>
-<div class="paragraph">
-<p>OUTPUT \$B\$.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_integer_to_octet_string_conversion">Integer to Octet String Conversion</h3>
-<div class="paragraph">
-<p>Converting an integer into an octet string, the basic method is to first
-represent the integer in binary, and the output the bit string as an octet
-string. This is the conversion flow.</p>
-</div>
-<div class="paragraph">
-<p>INPUT: A non-negative \$x\$; expected octet string length \$m l e n\$.
-Where \$2^(8 (m l e n)) &gt; x\$</p>
-</div>
-<div class="paragraph">
-<p>OUTPUT: Octet string \$M\$ of length \$m l e n\$</p>
-</div>
-<div class="paragraph">
-<p>STEPS: Convert a number \$x\$ based on \$2^8 = 256\$,
-\$x =
-x_{m l e n-1}2^(8(m l e n-1)) +
-x_{m l e n-2}2^(8(m l e n-2)) +
-... x_{1}2^8 + x_0\$ into \$M = M_{0}M_{1} … M_{m l e n-1}\$</p>
-</div>
-<div class="paragraph">
-<p>Given \$0 &lt;= i &lt;= m l e n–1\$, set:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\$M_{i} = x_{m l e n-1-i}\$
-</div>
-</div>
-<div class="paragraph">
-<p>OUTPUT: \$M\$</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_octet_string_to_whole_number_conversion">Octet String to Whole Number Conversion</h3>
-<div class="paragraph">
-<p>It is simple to convert an Octet String into a Base 256 whole number. Conversion
-method below.</p>
-</div>
-<div class="paragraph">
-<p>INPUT: Octet String \$M\$</p>
-</div>
-<div class="paragraph">
-<p>OUTPUT: Whole number \$x\$</p>
-</div>
-<div class="paragraph">
-<p>STEPS: Convert \$M = M_0 M_1 … M_{m l e n-1}\$ into whole number \$x\$.</p>
-</div>
-<div class="paragraph">
-<p>\$M_i\$ is like a whole number within \$[0~255\$]</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\$x = sum_{i=0}^{m l e n-1} 2^{8(m l e n-1-i)} M_i\$
-</div>
-</div>
-<div class="paragraph">
-<p>Output \$x\$.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_data_format">Data Format</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_secret_key_data_format">Secret Key Data Format</h3>
-<div class="paragraph">
-<p>SM2 secret key data format as described in ASN.1 is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>SM2PrivateKey ::= INTEGER</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>SM2 public key data format as described in ASN.1 is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>SM2PublicKey ::= BIT STRING</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>SM2PublicKey</code> is of type <code>BIT STRING</code>, content is <code>04 | X | Y</code>, within that, <code>X</code>
-and <code>Y</code> specifies the x- and y-coordinates of the public key, each of 256-bits
-long.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_encrypted_data_format">Encrypted Data Format</h3>
-<div class="paragraph">
-<p>SM2 encrypted data format as described in ASN.1 is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>SM2Cipher ::= SEQENCE{
-  XCoordinate     INTEGER,                -- x-coordinate
-  YCoordinate     INTEGER,                -- y-coordinate
-  HASH            OCTET STRING SIZE(32),  -- hash value
-  CipherText      OCTET STRING            -- ciphertext
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>HASH</code> is the hash value calculated from SM3, with a fixed bit length of
-256-bits. <code>CipherText</code> is of same length as its plaintext.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_signature_data_format">Signature Data Format</h3>
-<div class="paragraph">
-<p>SM2 signature data format as described in ASN.1 is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>SM2Signature ::= SEQUENCE{
-  R   INTEGER,  -- first portion of signature
-  S   INTEGER   -- second portion of signature
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>R</code> and <code>S</code> are of 256 bits long.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_enveloped_secret_key_data_format">Enveloped Secret Key Data Format</h3>
-<div class="paragraph">
-<p>When transferring a SM2 secret key, the SM2 secret key should be encrypted. The
-encryption method is:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create a symmetric secret key;</p>
-</li>
-<li>
-<p>According to the necessary calculation methods, encrypt the SM2 private key
-to obtain the private key&#8217;s ciphertext. If the symmetric encryption method is a
-block cipher, utilize ECB mode;</p>
-</li>
-<li>
-<p>Utilize SM2 public key to encrypt the symmetric secret key to obtain
-symmetric secret key ciphertext;</p>
-</li>
-<li>
-<p>Put the SM2 private key ciphertext, symmetric secret key ciphertext into an
-Enveloped Key Data Format.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>SM2 Enveloped Secret Key data format as described in ASN.1 is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>SM2EnvelopedKey ::=  SEQUENCE{
-  symAlgID                AlgorithmIdentifier,  -- Symmetric Encryption Algorithm ID
-  symEncryptedKey         SM2Cipher,            -- Symmetric Encryption Key encrypted by SM2 Public Key
-  Sm2PublicKey            SM2PublicKey,         -- SM2 Public Key
-  Sm2EncryptedPrivateKey  BIT STRING            -- SM2 Private Key Encrypted by Symmetric Encryption
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_pre_processing">Pre-processing</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_pre_processing_1">Pre-processing 1</h3>
-<div class="paragraph">
-<p>Pre-processing 1 is to use the signing party&#8217;s identifier and signature public
-key, to calculate value <code>Z</code>.
-<code>Z</code> is used in pre-processing 2, which is the SM2 key negotiation.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>ID</code>: Byte String. User Identifier.</p>
-</li>
-<li>
-<p><code>Q</code>: <code>SM2PublicKey</code>. User Public Key.</p>
-</li>
+        <p id="_83ced303-1631-4377-9b40-5bcd917a1119">The main drafters of this standard include:</p>
+        <ul>
+  <li>
+    <p id="_6f05e8ad-4e77-4c7a-ace7-8d3295ad7d4e">Zheng Jiang</p>
+  </li>
+  <li>
+    <p id="_72472bec-3b47-45eb-acb3-5cc88ecbbeef">Jiang Hongyu</p>
+  </li>
+  <li>
+    <p id="_a787335e-510d-4783-ac8d-47ec8d841d47">Fu Dapeng</p>
+  </li>
+  <li>
+    <p id="_9e894b61-e85b-41a4-94dc-966d22d36093">Li Yuanzheng</p>
+  </li>
+  <li>
+    <p id="_84825168-2bc6-4c86-b1ce-1fd7659a1558">Han Wei</p>
+  </li>
+  <li>
+    <p id="_d3bceb67-4688-401a-9d26-fc26ea04bc3a">Xu Mingyi</p>
+  </li>
+  <li>
+    <p id="_9d6f8f0e-bbc1-4d1c-b577-0c5e754ef03a">Wang Nina</p>
+  </li>
+  <li>
+    <p id="_344bd074-41e5-4804-b586-c8b8869ee0a9">Kongfan Yu</p>
+  </li>
+  <li>
+    <p id="_a6a7f3f1-3103-4c49-8ce6-0d6da27a3d7f">Yuan Feng</p>
+  </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Z</code>: Byte String. Output of Pre-processing 1.</p>
-</li>
+        <p id="_42de95a8-070b-48d7-b8fe-7da12b48dc3f">Responsible expert of this standard:</p>
+        <ul>
+  <li>
+    <p id="_31ca4242-6b86-42c8-b328-a15db9435783">Liu Ping</p>
+  </li>
 </ul>
+      </div>
+      <p class="zzSTDTitle1">SM2 Cryptographic Signature Message Syntax Specification</p>
+      <div id="scope">
+        <h1>1.&#x3000;Scope</h1>
+        <p id="_1b640e9b-3f39-4dee-a197-b6873da77dd6">This standard defines the cryptographic signature message syntax used with the
+SM2 cryptographic algorithms.</p>
+        <p id="_b202a3a9-c7b7-47b6-aae2-8075fbd354bd">This standard applies to the operation results of using SM2 cryptographic
+algorithms for message encryption and digital signatures.</p>
+      </div>
+      <div>
+        <h1>2.&#x3000;Normative references</h1>
+        <p>The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
+        <p id="GBT162621" class="NormRef">GB/T 16262-1:2006, &#x4FE1;&#x606F;&#x6280;&#x672F; &#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x8BB0;&#x6CD5;&#x4E00;(ASN.1) &#x7B2C;1&#x90E8;&#x5206;:&#x57FA;&#x672C;&#x8BB0;&#x6CD5;&#x89C4;&#x8303;</p>
+        <p id="GMT0006" class="NormRef">GM/T 0006:2012, &#x5BC6;&#x7801;&#x5E94;&#x7528;&#x6807;&#x8BC6;&#x89C4;&#x8303;</p>
+        <p id="GMT0009" class="NormRef">GM/T 0009:2012, SM2&#x5BC6;&#x7801;&#x7B97;&#x6CD5;&#x4F7F;&#x7528;&#x89C4;&#x8303;</p>
+        <p id="PKCS6" class="NormRef">PKCS #6, Extended Certificate Syntax</p>
+      </div>
+      <div id="_terms_and_definitions"><h1>3.&#x3000;Terms and definitions</h1><p>For the purposes of this document,
+    the following terms and definitions apply.</p>
+<h2 class="TermNum" id="_algorithm_identifier">3.1</h2>
+  <p class="Terms" style="text-align:left;">&#x7B97;&#x6CD5;&#x6807;&#x8BC6;&#x3000;algorithm identifier</p> 
+  <p id="_98821da1-0633-41e6-a714-c4a82a4c3c87">used to identify the algorithm that generated a digital message</p>
+<h2 class="TermNum" id="_sm2_sm2_algorithm">3.2</h2>
+  <p class="Terms" style="text-align:left;">SM2&#x7B97;&#x6CD5;&#x3000;SM2 algorithm</p> 
+  <p id="_253e6ee0-54da-4407-9fda-7a161b27b58c">an elliptic curve cryptographic algorithm, with a 256 bit long secret key.</p>
+<h2 class="TermNum" id="_sm3_sm3_algorithm">3.3</h2>
+  <p class="Terms" style="text-align:left;">SM3&#x7B97;&#x6CD5;&#x3000;SM3 algorithm</p> 
+  <p id="_faaf9bb3-b69c-4e4c-a666-3943a040d96d">a hash algorithm with an output length of 256 bits.</p>
 </div>
-<div class="paragraph">
-<p>Formula is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>Z = SM3(ENTL|ID|a|b|xG|yG|xA|yA)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Where:</p>
-</div>
-<div class="ulist">
+      <div id="_symbols_and_abbreviations">
+        <h1>4.&#x3000;Symbols And Abbreviations</h1>
+        <p id="_f18cc050-f38c-4c68-8c32-f30263fca519">The following abbreviations are applicable to this document:</p>
+        <dl>
+          <dt>
+            <p>EC</p>
+          </dt>
+          <dd>
+    <p id="_319fc11e-1e52-42fb-9bb8-e862385f7586">Electronic Code Book mode</p>
+  </dd>
+          <dt>
+            <p>ECC</p>
+          </dt>
+          <dd>
+    <p id="_3cd44709-47a3-4bc3-876e-3c8d40b0f6bc">Elliptic Curve Cryptography</p>
+  </dd>
+          <dt>
+            <p>ID</p>
+          </dt>
+          <dd>
+    <p id="_00913f08-48b4-4d4e-b57c-a931b5c54444">User identification</p>
+  </dd>
+          <dt>
+            <p>OID</p>
+          </dt>
+          <dd>
+    <p id="_8f11d5b4-419b-47c6-923e-ee05f987f52a">Object identity</p>
+  </dd>
+        </dl>
+      </div>
+      <div id="oid-definitions">
+        <h1>5.&#x3000;OID Definitions</h1>
+        <p id="_5ebeff44-a462-4726-9163-64437779455b">This standard defines object identifiers of 6 objects: <tt>data</tt>, <tt>signedData</tt>,
+<tt>envelopedData</tt>, <tt>signedAndEnvelopedData</tt>, <tt>encryptedData</tt>, and <tt>keyAgreementInfo</tt>, as
+shown in <a href="#table-oid">Table 1</a>.</p>
+        <p class="TableTitle" align="center">Table 1&#xA0;&#x2014; Object Identifiers</p>
+        <table id="table-oid" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Object Identifier OID</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Object Identifier Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">1.2.156.10197.6.1.4.2</td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">SM2 Cryptographic Signature Message Syntax Specification</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">1.2.156.10197.6.1.4.2.1</td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;"><tt>data</tt>: data type</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">1.2.156.10197.6.1.4.2.2</td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;"><tt>signedData</tt>: signature data type</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">1.2.156.10197.6.1.4.2.3</td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;"><tt>envelopedData</tt>: digital envelop data type</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">1.2.156.10197.6.1.4.2.4</td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;"><tt>signedAndEnvelopedData</tt>: signature and digital envelop data type</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">1.2.156.10197.6.1.4.2.5</td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;"><tt>encryptedData</tt>: encrypted data type</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">1.2.156.10197.6.1.4.2.6</td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;"><tt>keyAgreementInfo</tt>: key agreement type</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="_definition_of_basic_types">
+        <h1>6.&#x3000;Definition Of Basic Types</h1>
+        <div id="_certificaterevocationlists"><h2>6.1.&#x3000;<tt>CertificateRevocationLists</tt></h2><p id="_fcf40c44-5924-4be3-a50e-61de19345639">The <tt>CertificateRevocationLists</tt> structure provides a set of certificate
+revocation lists.</p>
+<p id="_67b2ef24-c031-4c71-ae45-08d6ade31462" class="Sourcecode">CertificateRevocationLists&#xA0;::=&#xA0;SET&#xA0;OF&#xA0;CertificateRevocationList</p></div>
+        <div id="_contentencryptionalgorithmidentifier"><h2>6.2.&#x3000;<tt>ContentEncryptionAlgorithmIdentifier</tt></h2><p id="_9b1cac8a-8ab2-45e0-a99c-409c8d691bbf">The <tt>ContentEncryptionAlgorithmIdentifier</tt> type indicates a data encryption
+algorithm, with its OID specified in <a href="#GMT0006">GM/T 0006</a>.</p>
+<p id="_e09c9376-c4db-4a2e-af16-c4afb1d50bcf" class="Sourcecode">ContentEncryptionAlgorithmIdentifier&#xA0;::=&#xA0;AlgorithmIdentifier</p></div>
+        <div id="_digestalgorithmidentifier"><h2>6.3.&#x3000;<tt>DigestAlgorithmIdentifier</tt></h2><p id="_008f9f9d-5ffd-4649-b3b3-8bbbced5d703">The <tt>DigestAlgorithmIdentifier</tt> type indicates a message digest algorithm. In
+this specification it is designated as the SM3 cryptographic hash algorithm,
+with its OID given in <a href="#GMT0006">GM/T 0006</a>.</p>
+<p id="_6a8ae528-2b1c-4fe3-b9ac-1734e9c1f299" class="Sourcecode">DigestAlgorithmIdentifier&#xA0;::=&#xA0;AlgorithmIdentifier</p></div>
+        <div id="_digestencryptionalgorithmidentifier"><h2>6.4.&#x3000;<tt>DigestEncryptionAlgorithmIdentifier</tt></h2><p id="_da7d3af8-484f-465e-97b3-d7419e6e0e79">The <tt>DigestEncryptionAlgorithmIdentifier</tt> type indicates a digital signature
+algorithm, specified as the SM2 cryptographic algorithm, with its OID is given
+in <a href="#GMT0006">GM/T 0006</a>.</p>
+<p id="_80dae97a-47f2-41c6-b2e4-f21687122e56" class="Sourcecode">DigestEncryptionAlgorithmIdentifier&#xA0;::=&#xA0;AlgorithmIdentifier</p></div>
+        <div id="_extendedcertificateorcertificate"><h2>6.5.&#x3000;<tt>ExtendedCertificateOrCertificate</tt></h2><p id="_3c676af9-1c2a-4805-b385-ae3a036cf20e">The <tt>ExtendedCertificateOrCertificate</tt> type specifies a <a href="#PKCS6">PKCS #6</a> Extension
+Certificate or an X.509 Certificate. The recommended syntax for this type
+is given in <a href="#PKCS6">PKCS #6, Section 6</a>.</p>
+<p id="_3fda742c-cb07-4214-bb3b-31d4b0507d25" class="Sourcecode">ExtendedCertificateOrCertificate&#xA0;::=&#xA0;CHOICE&#xA0;{<br />&#xA0;&#xA0;certificate&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Certificate,&#xA0;--&#xA0;X.509<br />&#xA0;&#xA0;extendedCertificate[0]&#xA0;IMPLICIT&#xA0;ExtendedCertificate<br />}</p></div>
+        <div id="_extendedcertificatesandcertificates"><h2>6.6.&#x3000;<tt>ExtendedCertificatesAndCertificates</tt></h2><p id="_5e8ca20f-9ce9-4a86-a281-bfbbfbd53462">The <tt>ExtendedCertificatesAndCertificates</tt> type specifies a set of Extended
+Certificates and X.509 Certificates. This collection provides a full
+certificate chain for all signers reaching a recognizable "root" or "top-level CA".</p>
+<p id="_2a691045-5261-4b94-992d-59f43b8e6cdc" class="Sourcecode">ExtendedCertificatesAndCertificates&#xA0;::=&#xA0;SET&#xA0;OF&#xA0;ExtendedCertificateOrCertificate</p></div>
+        <div id="_issuerandserialnumber"><h2>6.7.&#x3000;<tt>IssuerAndSerialNumber</tt></h2><p id="_25725afa-c59f-4b88-82cb-e385df834451">The <tt>IssuerAndSerialNumber</tt> type indicates the issuer and serial number of a
+certificate, that can be used to verify the certificate itself as well as the
+entity and public key that corresponds to it.</p>
+<p id="_e0fa802c-f180-4ad5-b034-dbe65531f35d" class="Sourcecode">IssuerAndSerialNumber&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;issuer&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Name,<br />&#xA0;&#xA0;serialNumber&#xA0;&#xA0;&#xA0;CertificateSerialNumber<br />}</p></div>
+        <div id="_keyencryptionalgorithmidentifier"><h2>6.8.&#x3000;<tt>KeyEncryptionAlgorithmIdentifier</tt></h2><p id="_db379bf5-d204-4abf-b088-2444d02a7b08">The <tt>KeyEncryptionAlgorithmIdentifier</tt> type indicates the encryption algorithm
+that is used to encrypt the symmetric key.</p>
+<p id="_5dd733ce-3472-429e-8123-177ed7c5255a" class="Sourcecode">KeyEncryptionAlgorithmIdentifier&#xA0;::=&#xA0;AlgorithmIdentifier</p></div>
+        <div id="_version"><h2>6.9.&#x3000;<tt>Version</tt></h2><p id="_9d69cac3-5d98-4581-b21e-6534dfac53f8">The <tt>Version</tt> type indicates the version number of the syntax.</p>
+<p id="_fe14ceea-90d8-4455-b9b6-fb2f393492a1" class="Sourcecode">Version&#xA0;::=&#xA0;INTEGER(1)</p></div>
+        <div id="_contentinfo"><h2>6.10.&#x3000;<tt>ContentInfo</tt></h2><p id="_972b39be-5f79-4e25-88ad-913c5bc2f04c">The <tt>ContentInfo</tt> type indicates the common syntax structure for content
+exchange, as defined below.</p>
+<p id="_846642bf-1507-42e9-9cd1-d1acd3dc8f31" class="Sourcecode">ContentInfo&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;contentType&#xA0;&#xA0;ContentType,<br />&#xA0;&#xA0;content[0]&#xA0;&#xA0;&#xA0;EXPLICIT&#xA0;ANY&#xA0;DEFINED&#xA0;BY&#xA0;contentType&#xA0;OPTIONAL<br />}<br /><br />ContentType&#xA0;::=&#xA0;OBJECT&#xA0;IDENTIFIER</p>
+<p id="_c7adeb7b-6f53-4605-91b5-06a0ae4c33d9">Where:</p>
 <ul>
-<li>
-<p><code>ENTL</code> is a 2 byte field indicating bit-length of ID;</p>
-</li>
-<li>
-<p><code>ID</code> is the User Identifier;</p>
-</li>
-<li>
-<p><code>a</code>, <code>b</code> is the System Curve Parameter;</p>
-</li>
-<li>
-<p><code>xG</code>, <code>yG</code> are the base points;</p>
-</li>
-<li>
-<p><code>xA</code>, <code>yA</code> represents the User&#8217;s Public Key.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003 and GM/T 0004.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_pre_processing_2">Pre-processing 2</h3>
-<div class="paragraph">
-<p>Pre-processing 2 is the process of using value <code>Z</code> and the message to be signed,
-utilize SM3 to calculate hash value <code>H</code>. Hash value <code>H</code> is used for
-the calculation of SM2 digital signatures.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
+  <li>
+    <p id="_15910714-e28a-4f0c-a41f-6ff98fbfd7bf"><tt>ContentType</tt> contains an object identifier, as defined in
+<a href="#oid-definitions">Clause 5</a>.</p>
+  </li>
+  <li>
+    <p id="_7fc1396d-de04-47b6-a028-b87920026746"><tt>content</tt> contains content, and is an optional field.</p>
+  </li>
+</ul></div>
+      </div>
+      <div id="_data_types">
+        <h1>7.&#x3000;Data Types</h1>
+        <p id="_8c75b793-1fa8-4176-8806-b39fd0728a10">The <tt>data</tt> data type structure is defined below.</p>
+        <p id="_324c134e-c773-4735-bfdf-b9c7fa2d955f" class="Sourcecode">Data&#xA0;::=&#xA0;OCTET&#xA0;STRING</p>
+        <p id="_dd910329-f8f6-43e2-9dd7-dc4b554c4f8f">The <tt>data</tt> data type structure is an octet string of any length, such as the
+content of a text document in ASCII.</p>
+      </div>
+      <div id="_digital_signature_data_structure_signeddata">
+        <h1>8.&#x3000;Digital Signature Data Structure signedData</h1>
+        <div id="_signeddata_type"><h2>8.1.&#x3000;<tt>signedData</tt> Type</h2><p id="_faf44149-bf30-4b28-a93d-d48b4c3401b1">The <tt>signedData</tt> data type consists of any type of data together with a
+signature value of at least one signer. Any type of data can be signed by any
+number of signers simultaneously.</p>
+<p id="_d47aa534-0531-4255-8698-1e016b953348">The <tt>signedData</tt> data type structure is defined below.</p>
+<p id="_8236ba17-c839-47b2-aed1-7e6c1ede8d1a" class="Sourcecode">SignedData&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version,<br />&#xA0;&#xA0;digestAlgorithms&#xA0;&#xA0;DigestAlgorithmIdentifiers,<br />&#xA0;&#xA0;contentInfo&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;SM2Signature,<br />&#xA0;&#xA0;certificates[0]&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;ExtendedCertificatesAndCertificates&#xA0;OPTIONAL,<br />&#xA0;&#xA0;crls[1]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;CertificateRevocationLists&#xA0;OPTIONAL,<br />&#xA0;&#xA0;signerInfos&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;SignerInfos<br />}<br /><br />DigestAlgorithmIdentifiers&#xA0;::=&#xA0;SET&#xA0;OF&#xA0;DigestAlgorithmIdentifier<br /><br />SignerInfos::=&#xA0;SET&#xA0;OF&#xA0;SignerInfo</p>
+<p id="_ad7cca7d-b6cc-444d-b993-331b122e0e79">Description of this structure is given in <a href="#table-signeddata">Table 2</a>:</p>
+<p class="TableTitle" align="center">Table 2&#xA0;&#x2014; Data Fields of <tt>signedData</tt></p><table id="table-signeddata" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0"><thead><tr><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th></tr></thead><tbody><tr><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>digestAlgorithms</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>DigestAlgorithmIdentifiers</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Collection of message digest algorithm object identifiers</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>contentInfo</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>SM2Signature</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Signed data content</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>certificates</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>ExtendedCertificatesAndCertificates</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Collection of <a href="#PKCS6">PKCS #6</a> Extended Certificates and X.509 Certificates</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>crls</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>CertificateRevocationLists</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Collection of Certificate Revocation Lists</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>signerInfos</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>SignerInfos</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">Collection of each signer&#x2019;s information</td></tr></tbody></table></div>
+        <div id="_signerinfo_type"><h2>8.2.&#x3000;<tt>signerInfo</tt> Type</h2><p id="_79ed65a0-7e07-495d-aa24-511a4e78bdff">The <tt>signerInfo</tt> type structure is defined as follows:</p>
+<p id="_386c36b2-c027-4b57-94f1-ab2c02bb2877" class="Sourcecode">SignerInfo&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version,<br />&#xA0;&#xA0;issuerAndSerialNumber&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IssuerAndSerialNumber,<br />&#xA0;&#xA0;digestAlgorithm&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;DigestAlgorithmIdentifier,<br />&#xA0;&#xA0;authenticatedAttributes[0]&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;Attributes&#xA0;OPTIONAL,<br />&#xA0;&#xA0;digestEncryptionAlgorithm&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;DigestEncryptionAlgorithmIdentifier,<br />&#xA0;&#xA0;encryptedDigest&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;EncryptedDigest,<br />&#xA0;&#xA0;unauthenticatedAttributes[1]&#xA0;&#xA0;IMPLICIT&#xA0;Attributes&#xA0;OPTIONAL<br />}<br /><br />EncryptedDigest&#xA0;::=&#xA0;OCTET&#xA0;STRING</p>
+<p id="_9a1b2a6c-325a-42b6-b119-71d286573ef1">Description of this structure is given in <a href="#table-signerinfo">Table 3</a>.</p>
+<p class="TableTitle" align="center">Table 3&#xA0;&#x2014; Data Fields of <tt>signerInfo</tt></p><table id="table-signerinfo" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0"><thead><tr><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th></tr></thead><tbody><tr><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>issuerAndSerialNumber</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>IssuerAndSerialNumber</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">The distinguishing name of the certificate issuer and a certificate serial
+number that can be verified by the issuer, from which the certificate as well
+as the entity and public key corresponding to the certificate can be
+determined.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>digestAlgorithm</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>DigestAlgorithmIdentifier</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">The message digest algorithm used to calculate the content digest, specified
+as the SM3 Cryptographic Hash Algorithm in this specification.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>authenticatedAttributes</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>Attributes</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">An optional field of a set of attributes signed by the signer. If this field
+exists, the digest in this field is calculated by digesting the source text.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>digestEncryptionAlgorithm</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>DigestEncryptionAlgorithmIdentifier</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">SM2 Elliptic Curve Digital Signature Algorithm Object Identifier</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>encryptedDigest</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>OCTET STRING</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">The result of signing with the signer&#x2019;s private key, as defined in <a href="#GMT0009">GM/T 0009</a>.
+Its value is of type <tt>SM2Signature</tt>.</td></tr></tbody></table></div>
+      </div>
+      <div id="_digital_envelope_data_type_envelopeddata">
+        <h1>9.&#x3000;Digital Envelope Data Type envelopedData</h1>
+        <div id="_envelopeddata_type"><h2>9.1.&#x3000;<tt>envelopedData</tt> Type</h2><p id="_66b0a9d5-8f37-44b8-83f8-026826df8d7e">The digital envelope data type <tt>envelopedData</tt> consists of the encrypted
+content and the ciphertext of the data encryption key of at least one
+recipient.</p>
+<p id="_8b7cc0c3-4a82-4b4d-9cb1-94a32259921d">Its encrypted content is encrypted with the data encryption key, and the data
+encryption key is encrypted with the recipient&#x2019;s public key.</p>
+<p id="_9a4c9ee2-2941-405c-b7b8-7b0bf35cb7d7">This data type is used to create digital envelopes for the receiver&#x2019;s <tt>data</tt>,
+<tt>digestedData</tt>, or <tt>signedData</tt>.</p>
+<p id="_4aa71fe4-deb2-449d-a5b0-fbac10780d74">The <tt>envelopedData</tt> data type structure is defined below.</p>
+<p id="_587490fc-d210-4b17-892d-6226bcba1cf5" class="Sourcecode">EnvelopedData&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version,<br />&#xA0;&#xA0;recipientInfos&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;RecipientInfos,<br />&#xA0;&#xA0;encryptedContentInfo&#xA0;&#xA0;EncryptedContentInfo<br />}<br /><br />RecipientInfos&#xA0;::=&#xA0;SET&#xA0;OF&#xA0;RecipientInfo</p>
+<p id="_0603b3de-fb07-4164-a8f0-4d81670613b2">Description of this structure is given in <a href="#table-envelopeddata">Table 4</a>.</p>
+<p class="TableTitle" align="center">Table 4&#xA0;&#x2014; Data Fields of <tt>envelopedData</tt></p><table id="table-envelopeddata" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0"><thead><tr><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th></tr></thead><tbody><tr><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>recipientInfos</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>RecipientInfos</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">A set of recipient information, with a minimum of one recipient.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>encryptedContentInfo</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>EncryptedContentInfo</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">Encrypted message content</td></tr></tbody></table>
+<p id="_c7e952fd-f172-41d6-8185-0633ad915c7e" class="Sourcecode">EncryptedContentInfo&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;contentType&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;ContentType,<br />&#xA0;&#xA0;contentEncryptionAlgorithm&#xA0;&#xA0;ContentEncryptionAlgorithmIdentifier,<br />&#xA0;&#xA0;encryptedContent[0]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;EncryptedContent&#xA0;OPTIONAL,<br />&#xA0;&#xA0;sharedInfo1&#xA0;[1]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;OCTET&#xA0;STRING&#xA0;OPTIONAL,<br />&#xA0;&#xA0;sharedInfo2&#xA0;[2]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;OCTET&#xA0;STRING&#xA0;OPTIONAL<br />}<br /><br />EncryptedContent&#xA0;::=&#xA0;OCTET&#xA0;STRING</p>
+<p id="_e8800377-4b45-439f-93ae-992a67d8611d">Description of this structure is given in <a href="#table-encryptedcontentinfo">Table 5</a>.</p>
+<p class="TableTitle" align="center">Table 5&#xA0;&#x2014; Data Fields of <tt>EncryptedContentInfo</tt></p><table id="table-encryptedcontentinfo" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0"><thead><tr><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th></tr></thead><tbody><tr><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>contentType</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>ContentType</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Type of content</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>contentEncryptionAlgorithm</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>ContentEncryptionAlgorithmIdentifier</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Identifier of the encryption algorithm used for encrypting content (and its
+parameters)</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>encryptedContent</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>EncryptedContent</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Optional, the encrypted content</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>sharedInfo1[1]</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>OCTET STRING</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Optional, a shared message mutually agreed upon.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>sharedInfo2[2]</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>OCTET STRING</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">Optional, a shared message mutually agreed upon.</td></tr></tbody></table></div>
+        <div id="_recipientinfo_type"><h2>9.2.&#x3000;<tt>recipientInfo</tt> Type</h2><p id="_3bf06670-7a97-4ff2-909b-c63990c8e82f">The details of each recipient is represented using the <tt>recipientInfo</tt> type.</p>
+<p id="_bf79bf34-e8dd-4c92-923a-910363147298">The <tt>recipientInfo</tt> data type structure is defined below.</p>
+<p id="_983defba-2578-40a4-8554-190194acfbe9" class="Sourcecode">RecipientInfo&#xA0;::=&#xA0;SEQUENCE{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version,<br />&#xA0;&#xA0;issuerAndSerialNumber&#xA0;&#xA0;&#xA0;IssuerAndSerialNumber,<br />&#xA0;&#xA0;keyEncryptionAlgorithm&#xA0;&#xA0;KeyEncryptionAlgorithmIdentifier,<br />&#xA0;&#xA0;encryptedKey&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OCTET&#xA0;STRING<br />}</p>
+<p id="_90f56158-c226-4c28-b41c-9e10a1facba0">Description of this structure is given in <a href="#table-recipientinfo">Table 6</a>.</p>
+<p class="TableTitle" align="center">Table 6&#xA0;&#x2014; Data Fields of <tt>RecipientInfo</tt></p><table id="table-recipientinfo" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0"><thead><tr><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th><th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th></tr></thead><tbody><tr><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td><td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>issuerAndSerialNumber</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>IssuerAndSerialNumber</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Distinguishing name of issuer and serial number of the certificate.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>keyEncryptionAlgorithm</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>KeyEncryptionAlgorithmIdentifier</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Algorithm used with the recipient&#x2019;s public key to encrypt the data encryption
+key.  Specified as the SM2 Elliptic Curve Encryption Algorithm.</td></tr><tr><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>encryptedKey</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>OCTET STRING</tt>
+      </td><td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">Data encryption key in form of ciphertext <tt>SM2cipher</tt>, as defined in <a href="#GMT0009">GM/T 0009</a></td></tr></tbody></table></div>
+      </div>
+      <div id="_signature_and_digital_envelope_data_type_signedandenvelopeddata">
+        <h1>10.&#x3000;Signature And Digital Envelope Data Type signedAndEnvelopedData</h1>
+        <p id="_eba94f29-cadf-47fd-a1de-cd9475550a2d">The <tt>signedAndEnvelopedData</tt> data type consists of any type of encrypted data, at
+least one recipient&#x2019;s data encryption key, and at least one signer&#x2019;s signature.</p>
+        <p id="_67a53813-9b4b-4aaf-a384-cb39f27f53ec">The <tt>signedAndEnvelopedData</tt> data type structure is defined below.</p>
+        <p id="_04e75a4b-51a9-4ffe-9bab-ad19052b9d63" class="Sourcecode">SignedAndEnvelopedData&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version,<br />&#xA0;&#xA0;recipientInfos&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;RecipientInfos,<br />&#xA0;&#xA0;digestAlgorithms&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;DigestAlgorithmIdentifiers,<br />&#xA0;&#xA0;encryptedContentInfo&#xA0;&#xA0;EncryptedContentInfo,<br />&#xA0;&#xA0;certificates[0]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;ExtendedCertificatesAndCertificates&#xA0;OPTIONAL,<br />&#xA0;&#xA0;crls[1]&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;IMPLICIT&#xA0;CertificateRevocationLists&#xA0;OPTIONAL,<br />&#xA0;&#xA0;signerInfos&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;SignerInfos<br />}</p>
+        <p id="_c4a375bc-8ee8-403c-913b-1dc6fac03485">Description of its fields is given in <a href="#table-signedandenvelopeddata">Table 7</a>.</p>
+        <p class="TableTitle" align="center">Table 7&#xA0;&#x2014; Data Fields of <tt>signedAndEnvelopedData</tt></p>
+        <table id="table-signedandenvelopeddata" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>recipientInfos</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>RecipientInfos</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">A set of recipient information, with a minimum of one element.</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>digestAlgorithms</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>DigestAlgorithmIdentifiers</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">A set of object identifiers for message digest algorithms</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>encryptedContentInfo</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>EncryptedContentInfo</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Encrypted content, can be of any defined data type</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>certificates</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>ExtendedCertificatesAndCertificates</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Optional, a set of <a href="#PKCS6">PKCS #6</a> Extended Certificates and X.509 Certificates</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>crls</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>CertificateRevocationLists</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">A set of certification revocation lists.</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>signerInfos</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>SignerInfos</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">A set of signers, with a minimum of one element.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="_encrypted_data_data_type_encrypteddata">
+        <h1>11.&#x3000;Encrypted Data Data Type encryptedData</h1>
+        <p id="_7b4a1f22-6545-42b3-b27d-cc7152f26aeb">The <tt>encryptedData</tt> data type consists of any type of encrypted data that has
+neither a recipient nor an encrypted data encryption key.</p>
+        <p id="_033d156b-7996-4e07-8fe4-3dfad31fa506">The <tt>encryptedData</tt> data type is defined below.</p>
+        <p id="_6ad78186-25a4-440f-9fc5-f49f27937db9" class="Sourcecode">EncryptedData&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version,<br />&#xA0;&#xA0;encryptedContentInfo&#xA0;&#xA0;EncryptedContentInfo<br />&#xA0;}</p>
+        <p id="_bb818ff5-0125-4d39-a634-ff53a3098904">Description of its fields is given in <a href="#table-encrypteddata">Table 8</a>.</p>
+        <p class="TableTitle" align="center">Table 8&#xA0;&#x2014; Data Fields of <tt>encryptedData</tt></p>
+        <table id="table-encrypteddata" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>encryptedContentInfo</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>EncryptedContentInfo</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">Encrypted content</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="_private_key_agreement_data_type_keyagreementinfo">
+        <h1>12.&#x3000;Private Key Agreement Data Type keyAgreementInfo</h1>
+        <p id="_64b5121b-c256-4acd-b707-36944d36d602">The data type for key negotiation <tt>keyAgreementInfo</tt> is used to provide a
+structure in which a shared secret key can be established between two users, by
+which the value of a shared secret key can be determined.</p>
+        <p id="_8995417b-3ddf-48e5-a031-1a9c6341fbd9">This data type is used for the exchange of public parameters between two users
+for generating a shared secret key.</p>
+        <p id="_48de98cd-c5cd-41cd-9c07-506f720b5515" class="Sourcecode">KeyAgreementInfo::=&#xA0;SEQUENCE{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Version(1),<br />&#xA0;&#xA0;tempPublicKeyR&#xA0;&#xA0;&#xA0;SM2PublicKey,<br />&#xA0;&#xA0;userCertificate&#xA0;&#xA0;Certificate,<br />&#xA0;&#xA0;userID&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OCTET&#xA0;STRING<br />}</p>
+        <p id="_330fe70a-b3b4-43d5-8c87-29403e8158b6">Description of its fields is given in <a href="#table-keyagreementinfo">Table 9</a>.</p>
+        <p class="TableTitle" align="center">Table 9&#xA0;&#x2014; Data Fields of <tt>KeyAgreementInfo</tt></p>
+        <table id="table-keyagreementinfo" class="MsoISOTable" border="1" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Field Name</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Data Type</th>
+              <th align="left" style="font-weight:bold;border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>version(1)</tt>
+      </td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">
+        <tt>Version</tt>
+      </td>
+              <td align="left" style="border-top:solid windowtext 1.5pt;border-bottom:solid windowtext 1.0pt;">Syntax version number</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>tempPublicKeyR</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>SM2PublicKey</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">Temporary public key</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>userCertificate</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">
+        <tt>Certificate</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.0pt;">User certificate</td>
+            </tr>
+            <tr>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>userID</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">
+        <tt>OCTET STRING</tt>
+      </td>
+              <td align="left" style="border-top:none;border-bottom:solid windowtext 1.5pt;">User identifier</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <div id="annex-a" class="Section3">
+        <h1 class="Annex"><b>Annex A</b><br />(normative)<br /><br />SM2 Private Key Format</h1>
+        <div id="_elliptic_curve_parameter_syntax"><h2>A.1.&#x3000;Elliptic Curve Parameter Syntax</h2><p id="_f0ea3ff6-0bd4-45b5-ad96-922ba4b2ea51">Elliptic curve parameters are expressed in identical form as the ASN.1 syntax
+described in X.962, reproduced as follows:</p>
+<p id="_6685ff23-acb0-4cf9-8178-c94ac2a0d5ee" class="Sourcecode">Parameters&#xA0;::=&#xA0;CHOICE&#xA0;{<br />&#xA0;&#xA0;ecParameters&#xA0;&#xA0;ECParameters,<br />&#xA0;&#xA0;namedCurve&#xA0;&#xA0;&#xA0;&#xA0;ObjectIdentifier,<br />&#xA0;&#xA0;implicitlyCA&#xA0;&#xA0;NULL<br />}</p>
+<p id="_ed2c511d-4bed-4da5-816d-d6fb03d49abc">When expressed in association with SM2 cryptographic algorithms, only the
+<tt>namedCurve</tt> type expression is used with the OID specifying the SM2
+cryptographic algorithm curve. See <a href="#GMT0006">GM/T 0006</a> for details.</p></div>
+        <div id="_public_key_syntax"><h2>A.2.&#x3000;Public Key Syntax</h2><p id="_6481759f-1e4c-48c8-896a-5e329feae566">Public keys based on elliptic curve cryptography are expressed in identical
+form as described by the corresponding ASN.1 notation provided in X.962,
+reproduced as follows:</p>
+<p id="_f901eeb9-263a-4d91-8f75-4d7699c156fd" class="Sourcecode">SubjectPublicKeyInfo&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;algorithm&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;AlgorithmIdentifier&#xA0;,<br />&#xA0;&#xA0;subjectPublicKey&#xA0;&#xA0;SM2PublicKey<br />}</p>
+<p id="_3e831503-bc0e-47d0-932b-e619fd6790d0">Where:</p>
 <ul>
-<li>
-<p><code>Z</code>: Byte String. Input to Pre-processing 2.</p>
-</li>
-<li>
-<p><code>M</code>: Byte String. Message to be signed.</p>
-</li>
+  <li>
+    <p id="_15668404-535d-40ce-b35f-9620d7ff78a2"><tt>algorithm</tt> defines the type of the public key</p>
+  </li>
+  <li>
+    <p id="_24c7957f-b266-4bcf-8b2a-7e73e6de7c17"><tt>subjectPublicKey</tt> defines the value of the public key</p>
+  </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
+<p id="_665eec23-9391-41a2-86a4-da625c4b8c8b"><tt>AlgorithmIdentifier</tt> is the binding of the object identifier and parameters,
+defined as follows:</p>
+<p id="_7a5f3575-339e-482e-ab24-746eb6f485cf" class="Sourcecode">AlgorithmIdentifier&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;algorithm&#xA0;&#xA0;&#xA0;OBJECT&#xA0;IDENTIFIER,<br />&#xA0;&#xA0;parameters&#xA0;&#xA0;ANY&#xA0;DEFINED&#xA0;BY&#xA0;algorithm&#xA0;OPTIONAL<br />}</p>
+<p id="_ec588cd2-9d4c-4dc6-be4e-9b1f6fe45a8b">The SM2 cryptographic algorithm OID (algorithm) is defined in <a href="#GMT0006">GM/T 0006</a>.</p></div>
+        <div id="_private_key_syntax"><h2>A.3.&#x3000;Private Key Syntax</h2><p id="_58f58358-fb2c-4e8b-a369-d1279c9e4f80">Private keys based on elliptic curve cryptography are expressed in identical
+form as described by the corresponding ASN.1 notation provided in X.962,
+reproduced as follows:</p>
+<p id="_593f3b03-20cb-4ccd-9765-51c9424f6ba5" class="Sourcecode">ECPrivateKey{CURVES:IOSet}&#xA0;::=&#xA0;SEQUENCE&#xA0;{<br />&#xA0;&#xA0;version&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;INTEGER&#xA0;{&#xA0;ecPrivkeyVer1(1)&#xA0;}&#xA0;(ecPrivkeyVer1),<br />&#xA0;&#xA0;privateKey&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;SM2PrivateKey,<br />&#xA0;&#xA0;parameters[0]&#xA0;&#xA0;Parameters&#xA0;OPTIONAL,<br />&#xA0;&#xA0;publicKey[1]&#xA0;&#xA0;&#xA0;SM2PublicKey<br />}</p>
+<p id="_b484a0f8-427c-4885-af20-f480a100aaa0">Where:</p>
 <ul>
-<li>
-<p><code>H</code>: Byte String. Hash Value.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Calculation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>H = SM3(Z|M)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003 and GM/T 0004.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_calculation_process">Calculation Process</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_generation_of_secret_key">Generation of Secret Key</h3>
-<div class="paragraph">
-<p>SM2 secret key generation is the process of using SM2 calculations to create a
-pair of keys, this pair of keys include a private key and the corresponding
-public key. The private key is of 256-bits long and the public key 512-bits
-long.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>None</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>k</code>: <code>SM2PrivateKey</code>. SM2 Private Key.</p>
-</li>
-<li>
-<p><code>Q</code>: <code>SM2PublicKey</code>. SM2 Public Key.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_encryption">Encryption</h3>
-<div class="paragraph">
-<p>SM2 Encryption is to use the public key of the given key pair to perform
-encryption, in order to generate ciphertext. This ciphertext can only be
-decrypted by the corresponding private key.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Q</code>: <code>SM2PublicKey</code>. SM2 Public Key.</p>
-</li>
-<li>
-<p><code>m</code>: Byte String. Plaintext To Be Encrypted.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>c</code>: <code>SM2Cipher</code>. Ciphertext.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Where:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Output <code>c</code> is in the format defined by Section 7.2;</p>
-</li>
-<li>
-<p>Output <code>c&#8217;s `XCoordinate</code>, <code>YCoordinate</code> are randomly generated x- and y-coordinates;</p>
-</li>
-<li>
-<p>Output <code>c&#8217;s `HASH</code> was calculated as <code>HASH = SM3( x | m | y )</code>, where <code>x</code>, <code>y</code> are
-`Q&#8217;s x- and y-coordinates;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Output `c&#8217;s CipherText is the ciphertext, its length is identical to that of
-the plaintext.</p>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003 and GM/T 0004.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_decryption">Decryption</h3>
-<div class="paragraph">
-<p>SM2 Decryption means using a private key to decrypt a ciphertext encrypted by
-the corresponding public key to obtain the plaintext.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>d</code>: <code>SM2PrivateKey</code>. SM2 private key.</p>
-</li>
-<li>
-<p><code>c</code>: <code>SM2Cipher</code>. Ciphertext.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>m</code>: Byte String. Corresponding plaintext to ciphertext.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><code>m</code> is the decrypted plaintext of <code>SM2Cipher</code>, the length of plaintext is
-the same as that of the input ciphertext <code>c</code>.</p>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_digital_signature">Digital Signature</h3>
-<div class="paragraph">
-<p>SM2 signature is to obtain a signature by using the result of pre-processing
-2&#8217;s together with the signer&#8217;s private key through the signing process.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>d</code>: <code>SM2PrivateKey</code>. Signer&#8217;s Private Key.</p>
-</li>
-<li>
-<p><code>H</code>: Byte String. Result of Pre-processing 2.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>sign</code>: <code>SM2Signature</code>. Signature value.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_signature_verification">Signature Verification</h3>
-<div class="paragraph">
-<p>SM2 signature verification is to verify a signature through using the result of
-pre-processing 2, the signature value and the signer&#8217;s public key, through a
-verification process.</p>
-</div>
-<div class="paragraph">
-<p>INPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>H</code>. Byte String. Result of Pre-processing 2</p>
-</li>
-<li>
-<p><code>sign</code>. <code>SM2Signature</code>. Signature value</p>
-</li>
-<li>
-<p><code>Q</code>. <code>PublicKey</code>. Signer&#8217;s Public Key.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>OUTPUT:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>true</code> if &#8220;validation passed&#8221;, <code>false</code> if &#8220;validation failed&#8221;.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_secret_key_negotiation">Secret Key Negotiation</h3>
-<div class="paragraph">
-<p>Secret key negotiation is the negotiation process between two users for the
-setup of a shared secret key.</p>
-</div>
-<div class="paragraph">
-<p>Assume the parties of negotiation are \$A\$ and \$B\$, their secret key
-pairs are \$(d_A, Q_A)\$ and \$(d_B, Q_B)\$, both parties need to receive
-a secret key data of \$k l e n\$ bits long.
-Secret key negotiation is split into two stages.</p>
-</div>
-<div class="sect3">
-<h4 id="_stage_1_create_a_temporary_secret_key_pair">Stage 1: Create A Temporary Secret Key Pair</h4>
-<div class="paragraph">
-<p>User \$A\$:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Utilize the secret key generation algorithm to create temporary key pair \$(r_A, R_A)\$,
-send \$R_A\$ and user \$A\$'s user identifier \$ID_A\$ to user \$B\$.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>User \$B\$:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Utilize the secret key generation algorithm to create temporary key pair \$(r_B, R_B)\$,
-send \$R_B\$ and user \$B\$'s user identifier \$ID_B\$ to user \$A\$.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_stage_2_calculate_the_shared_secret_key">Stage 2: Calculate The Shared Secret Key</h4>
-<div class="paragraph">
-<p>User \$A\$:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>INPUTS:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>\$Q_A\$: <code>SM2PublicKey</code>. User \$A\$'s public key.</p>
-</li>
-<li>
-<p>\$Q_B\$: <code>SM2PublicKey</code>. User \$B\$'s public key.</p>
-</li>
-<li>
-<p>\$R_A\$: <code>SM2PublicKey</code>. User \$A\$'s temporary public key.</p>
-</li>
-<li>
-<p>\$ID_A\$: <code>OCTET STRING</code>. User \$A\$'s user identifier.</p>
-</li>
-<li>
-<p>\$R_B\$: <code>SM2PublicKey</code>. User \$B\$'s temporary public key.</p>
-</li>
-<li>
-<p>\$ID_B\$: <code>OCTET STRING</code>. User \$A\$'s user identifier.</p>
-</li>
-<li>
-<p>\$d_A\$: <code>SM2PrivateKey</code>. User \$A\$'s private key.</p>
-</li>
-<li>
-<p>\$r_A\$: <code>SM2PrivateKey</code>. User \$A\$'s temporary private key.</p>
-</li>
-<li>
-<p>\$k l e n\$: <code>INTEGER</code>. Required bit-length of shared secret key.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>OUTPUTS:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>\$K\$: <code>OCTET STRING</code>. Secret key of \$k l e n\$ bits long.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>STEPS:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Use \$ID_A\$ and \$Q_A\$ as input to pre-processing 1 to obtain \$Z_A\$;</p>
-</li>
-<li>
-<p>Use \$ID_B\$ and \$Q_B\$ as input to pre-processing 1 to obtain \$Z_B\$;</p>
-</li>
-<li>
-<p>Use \$k l e n\$, \$Z_A\$, \$Z_B\$, \$d_A\$, \$r_A\$,
-\$R_A\$, \$Q_B\$, \$R_B\$ as input to calculate \$K\$.</p>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>User \$B\$:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>INPUTS:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>\$Q_B\$: <code>SM2PublicKey</code>. User \$B\$'s public key.</p>
-</li>
-<li>
-<p>\$Q_A\$: <code>SM2PublicKey</code>. User \$A\$'s public key.</p>
-</li>
-<li>
-<p>\$R_B\$: <code>SM2PublicKey</code>. User \$B\$'s temporary public key.</p>
-</li>
-<li>
-<p>\$ID_B\$: <code>OCTET STRING</code>. User \$A\$'s user identifier.</p>
-</li>
-<li>
-<p>\$R_A\$: <code>SM2PublicKey</code>. User \$A\$'s temporary public key.</p>
-</li>
-<li>
-<p>\$ID_A\$: <code>OCTET STRING</code>. User \$A\$'s user identifier.</p>
-</li>
-<li>
-<p>\$d_B\$: <code>SM2PrivateKey</code>. User \$B\$'s private key.</p>
-</li>
-<li>
-<p>\$r_B\$: <code>SM2PrivateKey</code>. User \$B\$'s temporary private key.</p>
-</li>
-<li>
-<p>\$k l e n\$: <code>INTEGER</code>. Required bit-length of shared secret key.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>OUTPUTS:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>\$K\$: <code>OCTET STRING</code>. Secret key of \$k l e n\$ bits long.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>STEPS:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Use \$ID_A\$ and \$Q_A\$ as input to pre-processing 1 to obtain \$Z_A\$;</p>
-</li>
-<li>
-<p>Use \$ID_B\$ and \$Q_B\$ as input to pre-processing 1 to obtain \$Z_B\$;</p>
-</li>
-<li>
-<p>Use \$k l e n\$, \$Z_A\$, \$Z_B\$, \$d_A\$, \$r_A\$,
-\$R_A\$, \$Q_B\$, \$R_B\$ as input to calculate \$K\$.</p>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For detailed calculations see GM/T 0003 and GM/T 0004.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_default_value_for_user_identifier_code_id_code">Default Value For User Identifier <code>ID</code></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Without pre-agreement, the user identifier <code>ID</code> should have length of 16 bytes,
-with the default value from left to right as the following
-(the ASCII hexadecimal representation of string <code>1234567812345678</code>):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38 0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Version 0.1<br>
-Last updated 2017-12-31 11:18:23 JST
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
+  <li>
+    <p id="_e5e97f1e-b089-47e5-96b4-7163d710ef16"><tt>version</tt> specifies the version number of the private key. The integer <tt>1</tt> is
+used here to indicate the version number of the SM2 private key.</p>
+  </li>
+</ul></div>
+      </div>
+      <hr width="25%" />
+    </main>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    asciimath2jax: {
+      delimiters: [['(#(', ')#)']]
+    }
+ });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML"></script>
+<script>
+    //TOC generation
+      $('#toc').toc({
+          'selectors': 'h1,h2:not(.TermNum)', //elements to use as headings
+          'container': 'main', //element to find all selectors in
+          'smoothScrolling': true, //enable or disable smooth scrolling on click
+          'prefix': 'toc', //prefix for anchor tags and class names
+          'onHighlight': function(el) {}, //called when a new section is highlighted 
+          'highlightOnScroll': true, //add class to heading that is currently in focus
+          'highlightOffset': 100, //offset to trigger the next headline
+          'anchorName': function(i, heading, prefix) { //custom function for anchor name
+              return prefix+i;
+          },
+          'headerText': function(i, heading, $heading) { //custom function building the header-item text
+              return $heading.text();
+          },
+      'itemClass': function(i, heading, $heading, prefix) { // custom function for item class
+        return $heading[0].tagName.toLowerCase();
+      }
+      });
+      
+  </script>
+
+  <script>
+  //TOC toggle animation
+$('#toggle').on('click', function(){
+    if( $('nav').is(':visible') ) {
+        $('nav').animate({ 'left': '-353px' }, 'slow', function(){
+            $('nav').hide();
+        });
+        $('body').animate({ 'margin-left': '0' }, 'slow');
+    }
+    else {
+        $('nav').show();
+        $('nav').animate({ 'left': '0px' }, 'slow');
+        $('body').animate({ 'margin-left': '298px' }, 'slow');
+    }
 });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
-</body>
+
+<script>
+    // Scroll to top button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+
+<script>
+  $(document).ready(function() {
+          $('[id^=toc]').each(function ()
+          {
+             var currentToc = $(this);
+       var url = window.location.href;
+             currentToc.wrap("<a href='" + url + "#" + currentToc.attr("id") + "' </a>");
+          });
+});
+</script></body>
 </html>
