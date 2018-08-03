@@ -1,0 +1,675 @@
+= GM/T 0010-2012 SM2密码算法加密签名消息语法规范
+:docnumber: 0010
+:edition: 1
+:revdate: 2012-11-22
+:copyright-year: 2012
+:language: zh
+:script: Hans
+:title-main-zh: SM2密码算法加密签名消息语法规范
+:title-main-en: SM2 Cryptographic Signature Message Syntax Specification
+:published-date: 2012-11-22
+:implemented-date: 2012-11-22
+:technical-committee-type: technical
+:library-ics: 35.040
+:library-ccs: L80
+:scope: sector
+:topic: method
+:prefix: GM/T
+:mandate: recommended
+:library-ics: 35.040
+:library-ccs: L80
+:proposer: 国家密码管理局
+:authority: 国家密码管理局
+:stem:
+
+.前言
+
+本标准按照GB/T1.1—2009的规则编写。
+
+请注意本文件的某些内容可能涉及专利。本文件的发布机构不承担识别这些专利的责任。
+
+本标准由国家密码管理局提出。
+
+本标准由全国信息安全标准化技术委员会（SAC/TC260）归口。
+
+本标准中的<<annex-a>>为规范性附录。
+
+本标准起草单位：上海格尔软件股份有限公司、北京海泰方圆科技有限公司、北京数字认证股份有限公司、无锡江南信息安全工程技术中心、成都卫士通信息产业股份有限公司、上海市数字证书认证中心有限公司、兴唐通信科技有限公司、山东得安信息技术有限公司、国家信息安全工程技术研究中心。
+
+本标准主要起草人：郑强、蒋红宇、傅大鹏、李元正、韩玮、徐明翼、王妮娜、孔凡玉、袁锋。
+
+本标准责任专家：刘平。
+
+
+== Scope
+
+
+本标准定义了使用SM2密码算法的加密签名消息语法。
+
+本标准适用于使用SM2密码算法进行加密和签名操作时对操作结果的标准化封装。
+
+
+
+== 规范性引用文件
+
+下列文件对于本文件的应用是必不可少的。凡是注日期的引用文件，仅注日期的版本适用于本文件，凡是不注日期的引用文件，其最新版本（包括所有的修改单）适用于本文件。
+
+* [[[GBT162621,GB/T 16262.1-2006]]], 信息技术 抽象语法记法 一（ASN.1）：基本记法规范(ISO/IEC 8824-1:2002，IDT)
+* [[[GMT0006,GM/T 0006-2012]]], 密码应用标识规范
+* [[[GMT0009,GM/T 0009-2012]]], SM2密码算法使用规范
+* [[[PKCS6,PKCS #6]]] Extended Certificate Syntax
+
+
+== 术语和定义
+
+The following terms apply to this standard.
+
+=== [zh]#算法标识# [en]#algorithm identifier#
+
+用于标明算法机制的数字化信息。
+
+=== [zh]#SM2算法# [en]#SM2 algorithm#
+
+一种椭圆曲线密码算法，密钥长度为256比特。
+
+=== [zh]#SM3算法# [en]#SM3 algorithm#
+
+一种杂凑算法，输出长度为256比特。
+
+
+== 缩略语
+
+下列缩略语适用于本文件：
+
+ECC:: 椭圆曲线密码算法（Elliptic Curve Cryptography）
+
+ID:: 用户标识（Identity）
+
+OID:: 对象标识符（Object Identity）
+
+
+[[oid-definitions]]
+== OID 定义
+
+本标准对6个对象 `data`, `signedData`,
+`envelopedData`, `signedAndEnvelopedData`, `encryptedData`, 和 `keyAgreementInfo`, 的标识符进行了定义，详见 <<table-oid>>.
+
+[[table-oid]]
+.对象标识符
+|===
+| 对象标识符 OID   | 对象标识符定义
+
+| 1.2.156.10197.6.1.4.2   | SM2密码算法加密签名消息语法规范
+| 1.2.156.10197.6.1.4.2.1 | 数据类型 `data`
+| 1.2.156.10197.6.1.4.2.2 | 签名数据类型 `signedData`
+| 1.2.156.10197.6.1.4.2.3 | 数字信封数据类型 `envelopedData`
+| 1.2.156.10197.6.1.4.2.4 | 签名及数字信封数据类型 `signedAndEnvelopedData`
+| 1.2.156.10197.6.1.4.2.5 | 加密数据类型 `encryptedData`
+| 1.2.156.10197.6.1.4.2.6 | 密钥协商类型 `keyAgreementInfo`
+|===
+
+
+== 基本类型定义
+
+=== `CertificateRevocationLists`
+
+`CertificateRevocationLists` 类型标明一个证书撤销列表的集合。
+
+[source,asn1]
+----
+CertificateRevocationLists ::= SET OF CertificateRevocationList
+----
+
+
+=== `ContentEncryptionAlgorithmIdentifier`
+
+`ContentEncryptionAlgorithmIdentifier` 类型标明一个数据加密算法。其OID见 <<GMT0006>>.
+
+[source,asn1]
+----
+ContentEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `DigestAlgorithmIdentifier`
+
+`DigestAlgorithmIdentifier` 类型标明一个消息摘要算法，本规范为SM3算法，其OID见<<GMT0006>>。
+
+[source,asn1]
+----
+DigestAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `DigestEncryptionAlgorithmIdentifier`
+
+`DigestEncryptionAlgorithmIdentifier` 类型标明一个签名算法，本规范为SM2密码算法，其OID见<<GMT0006>>。
+
+[source,asn1]
+----
+DigestEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `ExtendedCertificateOrCertificate`
+
+`ExtendedCertificateOrCertificate` 类型指定一个<<PKCS6>>扩展证书或者一个X.509证书。这一类型见<<PKCS6,section 6>>推荐的语法.
+
+[source,asn1]
+----
+ExtendedCertificateOrCertificate ::= CHOICE {
+  certificate            Certificate, -- X.509
+  extendedCertificate[0] IMPLICIT ExtendedCertificate
+}
+----
+
+
+=== `ExtendedCertificatesAndCertificates`
+
+`ExtendedCertificatesAndCertificates` 类型指定一个扩展证书和X.509证书的集合。它表示集合足以包含从可识别的“根”或“顶级CA”到所有签名者的证书链。
+
+[source,asn1]
+----
+ExtendedCertificatesAndCertificates ::= SET OF ExtendedCertificateOrCertificate
+----
+
+=== `IssuerAndSerialNumber`
+
+`IssuerAndSerialNumber` 类型标明一个证书颁发者可识别名和颁发者确定的证书序列号，可据此确定一份证书和与此证书对应的实体及公钥。
+
+[source,asn1]
+----
+IssuerAndSerialNumber ::= SEQUENCE {
+  issuer         Name,
+  serialNumber   CertificateSerialNumber
+}
+----
+
+
+=== `KeyEncryptionAlgorithmIdentifier`
+
+`KeyEncryptionAlgorithmIdentifier` 类型标明加密对称密钥的加密算法。
+
+[source,asn1]
+----
+KeyEncryptionAlgorithmIdentifier ::= AlgorithmIdentifier
+----
+
+
+=== `Version`
+
+`Version` 类型标明语法版本号。
+
+[source,asn1]
+----
+Version ::= INTEGER(1)
+----
+
+=== `ContentInfo`
+
+`ContentInfo` 类型标明内容交换通用语法结构,内容交换的通用语法结构定义如下:
+
+[source,asn1]
+----
+ContentInfo ::= SEQUENCE {
+  contentType  ContentType,
+  content[0]   EXPLICIT ANY DEFINED BY contentType OPTIONAL
+}
+
+ContentType ::= OBJECT IDENTIFIER
+----
+
+
+其中:
+
+* `ContentType` 内容类型是一个对象标识符，其定义见本规范<<oid-definitions>>。
+
+* `content` 内容，可选。
+
+== 数据类型
+
+`data` 数据类型结构定义如下：
+
+[source,asn1]
+----
+Data ::= OCTET STRING
+----
+
+`data` 数据类型表示任意的字节串，比如ASCII文本文件。
+
+
+== 签名数据类型 `signedData`
+
+=== `signedData` 类型
+
+`signedData` 数据类型由任意类型的数据和至少一个签名者的签名值组成。任意类型的数据能够同时被任意数量的签名者签名。
+
+`signedData` 数据类型结构定义如下：
+
+[source,asn1]
+----
+SignedData ::= SEQUENCE {
+  version           Version,
+  digestAlgorithms  DigestAlgorithmIdentifiers,
+  contentInfo       SM2Signature,
+  certificates[0]   IMPLICIT ExtendedCertificatesAndCertificates OPTIONAL,
+  crls[1]           IMPLICIT CertificateRevocationLists OPTIONAL,
+  signerInfos       SignerInfos
+}
+
+DigestAlgorithmIdentifiers ::= SET OF DigestAlgorithmIdentifier
+
+SignerInfos::= SET OF SignerInfo
+----
+
+结构中各项含义见<<table-signeddata>>：
+
+[[table-signeddata]]
+.signedData 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `digestAlgorithms`
+| `DigestAlgorithmIdentifiers`
+| 消息摘要算法标识符的集合
+
+| `contentInfo`
+| `SM2Signature`
+| 被签名的数据内容
+
+| `certificates`
+| `ExtendedCertificatesAndCertificates`
+| <<PKCS6>>扩展证书和X.509证书的集合
+
+| `crls`
+| `CertificateRevocationLists`
+| 证书撤销列表的集合
+
+| `signerInfos`
+| `SignerInfos`
+| 每个签名者信息的集合
+
+|===
+
+
+=== `signerInfo` 类型
+
+`signerInfo` 类型结构定义如下：
+
+[source,asn1]
+----
+SignerInfo ::= SEQUENCE {
+  version                       Version,
+  issuerAndSerialNumber         IssuerAndSerialNumber,
+  digestAlgorithm               DigestAlgorithmIdentifier,
+  authenticatedAttributes[0]    IMPLICIT Attributes OPTIONAL,
+  digestEncryptionAlgorithm     DigestEncryptionAlgorithmIdentifier,
+  encryptedDigest               EncryptedDigest,
+  unauthenticatedAttributes[1]  IMPLICIT Attributes OPTIONAL
+}
+
+EncryptedDigest ::= OCTET STRING
+----
+
+结构中各项含义见<<table-signerinfo>>：
+
+[[table-signerinfo]]
+.signerInfo 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `issuerAndSerialNumber`
+| `IssuerAndSerialNumber`
+| 一个证书颁发者可识别名和颁发者确定的证书序列号，可据此确定一份证书和与此证书对应的实体及公钥
+
+| `digestAlgorithm`
+| `DigestAlgorithmIdentifier`
+| 对内容进行摘要计算的消息摘要算法，本规范采用SM3算法
+
+| `authenticatedAttributes`
+| `Attributes`
+| 是经由签名者签名的属性的集合，该域可选。如果该域存在，该域中摘要的计算方法是对原文进行摘要计算结果
+
+| `digestEncryptionAlgorithm`
+| `DigestEncryptionAlgorithmIdentifier`
+| SM2 椭圆曲线数字签名算法标识符
+
+
+| `encryptedDigest`
+| `OCTET STRING`
+| 值是 `SM2Signature`，用签名者私钥进行签名的结果，其定义见<<GMT0009>>。
+
+|===
+
+
+
+== 数字信封数据类型 `envelopedData`
+
+=== `envelopedData` 类型
+
+数字信封 `envelopedData` 数据类型由加密数据和至少一个接收者的数据加密密钥的密文组成。其中，加密数据是用数据加密密钥加密的，数据加密密钥是用接收者的公钥加密的。
+
+该类型用于为接收者的 `data`, `digestedData`, 或 `signedData` 三种类型的数据做数字信封。
+
+`envelopedData` 数据类型结构定义如下:
+
+[source,asn1]
+----
+EnvelopedData ::= SEQUENCE {
+  version               Version,
+  recipientInfos        RecipientInfos,
+  encryptedContentInfo  EncryptedContentInfo
+}
+
+RecipientInfos ::= SET OF RecipientInfo
+----
+
+结构中各项含义见<<table-envelopeddata>>：
+
+[[table-envelopeddata]]
+.envelopedData 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `recipientInfos`
+| `RecipientInfos`
+| 每个接收者信息的集合，至少要有一个接收者
+
+| `encryptedContentInfo`
+| `EncryptedContentInfo`
+| 加了密的内容信息
+
+|===
+
+[source,asn1]
+----
+EncryptedContentInfo ::= SEQUENCE {
+  contentType                 ContentType,
+  contentEncryptionAlgorithm  ContentEncryptionAlgorithmIdentifier,
+  encryptedContent[0]         IMPLICIT EncryptedContent OPTIONAL,
+  sharedInfo1 [1]             IMPLICIT OCTET STRING OPTIONAL,
+  sharedInfo2 [2]             IMPLICIT OCTET STRING OPTIONAL
+}
+
+EncryptedContent ::= OCTET STRING
+----
+
+结构中各项含义见<<table-encryptedcontentinfo>>：
+
+[[table-encryptedcontentinfo]]
+.EncryptedContentInfo 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `contentType`
+| `ContentType`
+| 内容的类型
+
+| `contentEncryptionAlgorithm`
+| `ContentEncryptionAlgorithmIdentifier`
+| 内容加密算法（和相应的参数）
+
+| `encryptedContent`
+| `EncryptedContent`
+| 内容加密的结果，可选
+
+| `sharedInfo1[1]`
+| `OCTET STRING`
+| 协商好的共享信息，可选
+
+| `sharedInfo2[2]`
+| `OCTET STRING`
+| 协商好的共享信息，可选
+
+|===
+
+
+=== `recipientInfo` 类型
+
+每个接收者信息用 `recipientInfo` 类型表示，
+
+`recipientInfo` 类型结构定义如下：
+
+[source,asn1]
+----
+RecipientInfo ::= SEQUENCE{
+  version                 Version,
+  issuerAndSerialNumber   IssuerAndSerialNumber,
+  keyEncryptionAlgorithm  KeyEncryptionAlgorithmIdentifier,
+  encryptedKey            OCTET STRING
+}
+----
+
+结构中各项含义见<<table-recipientinfo>>：
+
+[[table-recipientinfo]]
+.RecipientInfo 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `issuerAndSerialNumber`
+| `IssuerAndSerialNumber`
+| 颁发者可辨别名和颁发序列号
+
+| `keyEncryptionAlgorithm`
+| `KeyEncryptionAlgorithmIdentifier`
+| 用接收者公钥加密数据加密密钥的算法，为SM2椭圆曲线加密算法
+
+| `encryptedKey`
+| `OCTET STRING`
+| 数据加密密钥密文 `SM2cipher`，其定义见 <<GMT0009>>
+
+|===
+
+== 签名及数字信封数据类型 `signedAndEnvelopedData`
+
+`signedAndEnvelopedData` 数据类型由任意类型的加密数据、至少一个接收者的数据加密密钥和至少一个签名者的签名组成。
+
+`signedAndEnvelopedData` 数据类型结构定义如下：
+
+[source,asn1]
+----
+SignedAndEnvelopedData ::= SEQUENCE {
+  version               Version,
+  recipientInfos        RecipientInfos,
+  digestAlgorithms      DigestAlgorithmIdentifiers,
+  encryptedContentInfo  EncryptedContentInfo,
+  certificates[0]       IMPLICIT ExtendedCertificatesAndCertificates OPTIONAL,
+  crls[1]               IMPLICIT CertificateRevocationLists OPTIONAL,
+  signerInfos           SignerInfos
+}
+----
+
+结构中各项含义见 <<table-signedandenvelopeddata>>：
+
+[[table-signedandenvelopeddata]]
+.signedAndEnvelopedData 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `recipientInfos`
+| `RecipientInfos`
+| 每个接受者信息的集合，至少一个元素
+
+| `digestAlgorithms`
+| `DigestAlgorithmIdentifiers`
+| 消息摘要算法标识符的集合
+
+| `encryptedContentInfo`
+| `EncryptedContentInfo`
+| 加了密的内容，可以是任何定义的数据类型
+
+| `certificates`
+| `ExtendedCertificatesAndCertificates`
+| <<PKCS6>>扩展证书和X.509证书的集合，是可选的
+
+| `crls`
+| `CertificateRevocationLists`
+| 证书撤销列表的集合
+
+| `signerInfos`
+| `SignerInfos`
+| 每个签名者的集合，至少要有一个元素
+
+|===
+
+== 加密数据类型 `encryptedData`
+
+`encryptedData` 数据类型由任意类型的加了密的数据组成，数据类型既没有接收者也没有加密的数据加密密钥。
+
+`encryptedData` 数据类型定义如下:
+
+[source,asn1]
+----
+EncryptedData ::= SEQUENCE {
+  version               Version,
+  encryptedContentInfo  EncryptedContentInfo
+ }
+----
+
+结构中各项含义见 <<table-encrypteddata>>：
+
+[[table-encrypteddata]]
+.encryptedData 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `encryptedContentInfo`
+| `EncryptedContentInfo`
+| 加了密的内容信息
+
+|===
+
+== 密钥协商类型 `keyAgreementInfo`
+
+密钥协商 `keyAgreementInfo` 数据类型标明两个用户之间建立一个共享秘密密钥的结构，通过这种方式能够确定一个共享秘密密钥的值。
+
+该类型用于两个用户为产生共享秘密密钥进行的公共参数交换。
+
+[source,asn1]
+----
+KeyAgreementInfo::= SEQUENCE{
+  version          Version(1),
+  tempPublicKeyR   SM2PublicKey,
+  userCertificate  Certificate,
+  userID           OCTET STRING
+}
+----
+
+结构中各项含义见 <<table-keyagreementinfo>>：
+
+[[table-keyagreementinfo]]
+.KeyAgreementInfo 数据类型
+|===
+| 字段名称 | 数据类型 | 含义
+
+| `version(1)`
+| `Version`
+| 语法的版本号
+
+| `tempPublicKeyR`
+| `SM2PublicKey`
+| 临时公钥
+
+| `userCertificate`
+| `Certificate`
+| 用户证书
+
+| `userID`
+| `OCTET STRING`
+| 用户标识
+
+|===
+
+
+[[annex-a]]
+[appendix,obligation=normative]
+== SM2 密钥格式
+
+=== 椭圆曲线参数语法
+
+椭圆曲线参数的表达采用与X962相同的ASN.1定义，其定义如下：
+
+[source,asn1]
+----
+Parameters ::= CHOICE {
+  ecParameters  ECParameters,
+  namedCurve    ObjectIdentifier,
+  implicitlyCA  NULL
+}
+----
+
+在用于SM2密码算法表达时，只使用 `namedCurve` 这一种表达方法，SM2密码算法曲线定义的OID。见<<GMT0006>>。
+
+=== 公钥语法
+
+椭圆曲线公钥的表达采用与X.962相同的ASN.1定义，其定义如下：
+
+[source,asn1]
+----
+SubjectPublicKeyInfo ::= SEQUENCE {
+  algorithm         AlgorithmIdentifier {{ECPKAlgorithms}},
+  subjectPublicKey  SM2PublicKey
+}
+----
+
+其中：
+
+* `algorithm` 定义了公钥的类型
+
+* `subjectPublicKey` 定义了公钥的实际值
+
+`AlgorithmIdentifier` 是对象标识与参数的绑定，其定义如下：
+
+[source,asn1]
+----
+AlgorithmIdentifier ::= SEQUENCE {
+  algorithm   OBJECT IDENTIFIER,
+  parameters  ANY DEFINED BY algorithm OPTIONAL
+}
+----
+
+对于SM2密码算法，其OID(algorithm)定义见<<GMT0006>>。
+
+=== 私钥语法
+
+椭圆曲线私钥的表达采用与X.962相同的ASN.1定义，其定义如下：
+
+[source,asn1]
+----
+ECPrivateKey{CURVES:IOSet} ::= SEQUENCE {
+  version        INTEGER { ecPrivkeyVer1(1) } (ecPrivkeyVer1),
+  privateKey     SM2PrivateKey,
+  parameters[0]  Parameters{{IOSet}} OPTIONAL,
+  publicKey[1]   SM2PublicKey
+}
+----
+
+其中：
+
+* `version` 指定了私钥的版本号，这里使用整数 `1` 来表示SM2私钥的版本号。
+

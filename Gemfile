@@ -1,5 +1,5 @@
 source "https://rubygems.org"
 
-gem "asciidoctor-pdf"
-gem "asciidoctor-mathematical"
-
+gem "metanorma"
+gem "metanorma-cli"
+gem "asciidoctor-gb"
