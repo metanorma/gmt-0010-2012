@@ -88,7 +88,7 @@ document. For referenced documents that are undated, the latest version
 * [[[GBT162621,GB/T 16262.1-2006]]], Information Technology -- Abstract Syntax Notation 1 (ASN.1) -- Basic Syntax Rules (ISO/IEC 8824-1:2002)
 * [[[GMT0006,GM/T 0006-2012]]], SM2 Cryptographic Algorithm Application Identification Specification
 * [[[GMT0009,GM/T 0009-2012]]], SM2 Cryptographic Algorithm Application Specification
-* [[[PKCS6,PKCS #6]]] Extended Certificate Syntax
+* [[[PKCS6,PKCS #6]]], Extended Certificate Syntax
 
 
 == Terms And Definitions
